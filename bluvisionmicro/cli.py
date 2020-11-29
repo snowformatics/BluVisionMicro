@@ -29,10 +29,7 @@ for experiment in experiments:
     # We loop over each inoculation time point inside the experiment
     dais = os.listdir(os.path.join(source_path, experiment))
     for hai in dais:
-        try:
-            os.makedirs(os.path.join(destination_path, experiment, hai))
-        except FileExistsError:
-            pass
+
 
         # We get all CZI images inside for the particular inoculation time point
         images = os.listdir(os.path.join(source_path, experiment, hai))

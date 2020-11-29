@@ -49,6 +49,11 @@ class HyphaePipeline(object):
         if not os.path.exists(os.path.join(self.destination_path)):
             os.makedirs(os.path.join(self.destination_path))
 
+            # try:
+            #     os.makedirs(os.path.join(destination_path, experiment, hai))
+            # except FileExistsError:
+            #     pass
+
     def get_meta(self):
         # We check which CZI format we have
         # New CZI format
