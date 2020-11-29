@@ -1,9 +1,8 @@
 import cv2
 import numpy as np
 from skimage import img_as_ubyte, img_as_uint
-from hyphae_cmd.helpers import auto_canny
 from skimage.morphology import binary_closing, dilation
-from skimage.filters import threshold_otsu, threshold_li, threshold_yen, threshold_isodata, threshold_mean, threshold_sauvola, threshold_niblack, threshold_triangle, threshold_minimum, threshold_local, threshold_multiotsu
+from skimage.filters import threshold_yen
 from hyphae_cmd.color_spaces import rgb_to_yq1q2
 
 
