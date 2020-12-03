@@ -28,11 +28,12 @@ class HyphaePipeline(object):
         print ('start')
 
     def read_images(self):
-        self.image_array = czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment, self.hai),
-                                                     self.slide_name)
+        self.image_array = bluvisionmicro.czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment,
+                                                                                 self.hai),
+                                                                    self.slide_name)
 
     def czi_meta_info(self):
-        self.czi_format, self.z_level, self.regions = czi_helper.get_czi_meta_info(self.image_array)
+        self.czi_format, self.z_level, self.regions = bluvisionmicro.czi_helper.get_czi_meta_info(self.image_array)
 
     def stack_images(self):
         self.stacked_image = bluvisionmicro.image_processing.min_ip_stacking(self.image_array, self.region,
