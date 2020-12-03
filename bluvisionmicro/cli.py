@@ -42,7 +42,6 @@ if not segmenter_class:
     raise argparse.ArgumentError("Invalid segmentation method '{}'".format(procedure))
 
 for experiment in experiments:
-
     # Experiments can have several pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))

@@ -1,5 +1,5 @@
 import os
-import czi_helper
+import bluvisionmicro.czi_helper
 import bluvisionmicro.io
 import bluvisionmicro.image_processing
 import bluvisionmicro.segmentation
@@ -50,7 +50,6 @@ class HyphaePipeline(object):
     def predict_hyphae(self):
         bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
                                                              self.cnn_model, self.destination_path,self.slide_name)
-
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
