@@ -22,12 +22,12 @@ def threshold_image(image_stacked):
     return binary_image
 
 
-def get_all_rois(binary_image):
+def get_all_contours(binary_image):
     (contours, _) = cv2.findContours(img_as_ubyte(binary_image), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     return contours
 
 
-def filter_rois(all_rois):
+def filter_contours(all_rois):
     """Filter the contours by low level features like size and ration. Optimized for hyphea.
         Args:
           contours : The contours of the binary image_name.

@@ -1,14 +1,9 @@
 import os
-#import joblib
-#from czifile import CziFile
-import cv2
 import czi_helper
 import bluvisionmicro.io
 import bluvisionmicro.image_processing
-
-#from hyphae_cmd.helpers import min_ip_stacking, get_leaf_area, get_hyphae_area, calculate_avg_hyphae_area
-#from hyphae_cmd.segmentation import segment, get_all_rois, filter_rois
-#rom hyphae_cmd.prediction import predict_with_handcrafted_features, predict_cnn
+import bluvisionmicro.segmentation
+import bluvisionmicro.deep_learning_helpers
 
 
 class HyphaePipeline(object):
@@ -33,7 +28,6 @@ class HyphaePipeline(object):
         print ('start')
 
     def read_images(self):
-        """Reading and the czi images."""
         self.image_array = czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment, self.hai),
                                                      self.slide_name)
 
@@ -41,32 +35,22 @@ class HyphaePipeline(object):
         self.czi_format, self.z_level, self.regions = czi_helper.get_czi_meta_info(self.image_array)
 
     def stack_images(self):
-        self.image_stacked = bluvisionmicro.image_processing.min_ip_stacking(self.image_array, self.region,
+        self.stacked_image = bluvisionmicro.image_processing.min_ip_stacking(self.image_array, self.region,
                                                                              self.z_level, self.czi_format)
 
+    def create_binary_image(self):
+        self.binary_image = bluvisionmicro.segmentation.threshold_image(self.stacked_image)
 
-    def segment_hyphae(self):
-        self.gray_image, self.binary_image = segment(self.image_stacked, self.slide_name, self.region)
+    def extract_contours(self):
+        self.all_contour_objects = bluvisionmicro.segmentation.get_all_contours(self.binary_image)
 
-    def get_rois(self):
-        self.all_rois = get_all_rois(self.binary_image)
-        return self.all_rois
+    def filter_contours(self):
+        self.filtered_contour_objects = bluvisionmicro.segmentation.filter_contours(self.all_contour_objects)
 
-    def filter_roi(self, all_rois):
-        self.filtered_rois = filter_rois(self.image_stacked, self.gray_image, all_rois, self.slide_name, self.region)
-        return self.filtered_rois
+    def predict_hyphae(self):
+        bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
+                                                             self.cnn_model, self.destination_path,self.slide_name)
 
-    def predict_rois(self):
-        """Features extraction. Different for each pathogen should be overridden"""
-        #predict_with_handcrafted_features(self.filtered_rois, self.image_stacked, self.clf_har, self.clf_pftas, self.destination_path, self.slide_name, self.region, self.file_results_name)
-        predict_cnn(self.filtered_rois, self.image_stacked, self.cnn_model, self.destination_path, self.slide_name, self.region, self.file_results_name)
-
-    def create_report(self):
-        orga.create_report(self.plate_id, self.report_path)
-
-    # def process(self):
-    #     # override in derived classes to perform an actual segmentation
-    #     pass
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
@@ -95,12 +79,24 @@ class HyphaePipeline(object):
             # We create a stacked image from the z-stack
             self.stack_images()
 
-            #cv2.imwrite(str(self.slide_name) + str(self.region) + '.png', self.image_stacked)
-        #
-        #     self.segment_hyphae()
-        #     #import cv2
-        #     #cv2.imwrite(str(self.slide_name) + str(self.region) + '.png', self.image_stacked)
-        #
+            # We create a binary image
+            self.create_binary_image()
+
+            # We extract all contours objects as possible ROIs
+            self.extract_contours()
+
+            # We apply some simple geometric filters to remove some trash objects (to small, to large etc.)
+            self.filter_contours()
+
+            # We classify the objects with a CNN model
+            self.predict_hyphae()
+
+
+            #bluvisionmicro.io.save_image(str(self.slide_name) + str(self.region) + 'binary.png', self.binary_image)
+
+
+
+
         #     all_rois2 = self.get_rois()
         #     filtered_rois = self.filter_roi(all_rois2)
         #     self.predict_rois()
