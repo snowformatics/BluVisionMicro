@@ -1,4 +1,5 @@
-
+import numpy as np
+import cv2
 
 def rgb_to_yq1q2(image):
     """ RGB to YQ1Q2 color space conversion.
@@ -14,7 +15,7 @@ def rgb_to_yq1q2(image):
     """
     r, g, b = image[:, :, 0], image[:, :, 1], image[:, :, 2]
     r = np.asarray(r, dtype=float)
-    g = np.asarray(g, dtype=float)
+    b = np.asarray(b, dtype=float)
     #q1 = (r / (r + g)) * 255
     q2 = (r / (r + b)) * 255
     #y = (((r + g + b) / 3) / 255) * 255
@@ -40,10 +41,10 @@ def min_ip_stacking(image_array, region, z_level, czi_format):
 
     if czi_format == 'old':
         images = [image_array[0, region, 0, index] for index in range(z_level)]
-        self.image_stacked = np.ones(image_array[0, region, 0, 0].shape, dtype=image_array[0, 0, 0, 0].dtype) * 255
+        image_stacked = np.ones(image_array[0, region, 0, 0].shape, dtype=image_array[0, 0, 0, 0].dtype) * 255
     if czi_format == 'new':
         images = [image_array[region, 0, index] for index in range(z_level)]
-        self.image_stacked = np.ones(image_array[region, 0, 0].shape, dtype=image_array[0, 0, 0].dtype) * 255
+        image_stacked = np.ones(image_array[region, 0, 0].shape, dtype=image_array[0, 0, 0].dtype) * 255
 
     for img in images:
         image_stacked = np.minimum(image_stacked, img)

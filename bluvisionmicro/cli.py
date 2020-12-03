@@ -2,7 +2,7 @@ import argparse
 import os
 from keras.models import load_model
 from bluvisionmicro.hyphae_pipeline import HyphaePipeline
-
+import bluvisionmicro.io
 
 parser = argparse.ArgumentParser(description='BluVision Micro analysis software.')
 parser.add_argument('-s', '--source_path', required=True,
@@ -26,15 +26,15 @@ args = parser.parse_args()
 source_path = args.source_path
 # Path to store the results
 destination_path = args.destination_path
+# Load pathogen mode
+procedure = args.procedure
 # List of experiments
 experiments = os.listdir(source_path)
 # Load CNN Model for prediction
 #cnn_model = load_model('09112020_1.h5')
 cnn_model = None
 
-
-
-procedure = args.procedure
+# Connect segmenter class to the pathogen argument
 segmenter_class = {
     'mildew': HyphaePipeline
 }.get(procedure)
@@ -42,15 +42,15 @@ if not segmenter_class:
     raise argparse.ArgumentError("Invalid segmentation method '{}'".format(procedure))
 
 for experiment in experiments:
+    # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
+    bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, 'Label'))
     # Experiments can have several pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
     for hai in hais:
-
         # We get all CZI images inside for the particular inoculation time point
         images = os.listdir(os.path.join(source_path, experiment, hai))
         print (images)
-        for slide_name in images:
-            #read_czi_image(os.path.join(source_path, experiment, hai), slide_name)
+        for slide_name in images[0:1]:
             args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
             segmenter_class().start_pipeline(args)

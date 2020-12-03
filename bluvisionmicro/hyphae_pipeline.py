@@ -1,7 +1,7 @@
 import os
 #import joblib
 from czifile import CziFile
-from czi_helper import read_czi_image
+import czi_helper
 
 
 #from hyphae_cmd.helpers import min_ip_stacking, get_leaf_area, get_hyphae_area, calculate_avg_hyphae_area
@@ -27,20 +27,9 @@ class HyphaePipeline(object):
     """
     NAME = "invalid"
 
-    #def __init__(self, slide, path_source, destination_path, experiment, hai, file_results_name, file_results_hyphae_avg_name, file_results_leaf_area):
     def __init__(self):
-        print ('init)')
+        print ('start')
 
-        # self.slide_name = slide
-        # self.path_source = path_source
-        # self.file_results_name = file_results_name
-        # self.file_results_hyphae_avg_name = file_results_hyphae_avg_name
-        # self.file_results_leaf_area = file_results_leaf_area
-        #
-        # self.experiment = experiment
-        # self.h = hai
-        # self.czi_format = None
-        # self.destination_path_org = destination_path
 
     def create_folder_structure(self):
         """Create all necessary folders."""
@@ -52,36 +41,16 @@ class HyphaePipeline(object):
             # except FileExistsError:
             #     pass
 
-    def get_meta(self):
-        # We check which CZI format we have
-        # New CZI format
-        if len(self.image_array.shape) == 6:
-            self.czi_format = 'new'
-            self.z_level = self.image_array.shape[2]
-            self.regions = int(self.image_array.shape[0])
-        # Old CZI format
-        if len(self.image_array.shape) == 7:
-            self.czi_format = 'old'
-            self.z_level = self.image_array.shape[3]
-            self.regions = int(self.image_array.shape[1])
-
-    def get_polygon(self):
-        with CziFile(os.path.join(self.source_path, self.slide_name)) as self.czi:
-            itemlist = self.czi.metadata()
-            get_leaf_area(self.slide_name, itemlist, self.file_results_leaf_area)
-
     def read_images(self):
         """Reading and the czi images."""
-        read_czi_image(os.path.join(self.source_path, self.experiment, self.hai), self.slide_name)
+        self.image_array = czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment, self.hai), self.slide_name)
 
-    # def load_models(self):
-    #     self.clf_har = joblib.load('har.pkl')
-    #     self.clf_pftas = joblib.load('pftas.pkl')
-    #     self.cnn_model = load_model('09112020_1.h5')
+    def czi_meta_info(self):
+        self.czi_format, self.z_level, self.regions = czi_helper.get_czi_meta_info(self.image_array)
 
 
     def stack_images(self, image_array, region, z_level):
-        self.image_stacked = min_ip_stacking(image_array, self.region, z_level, self.czi_format)
+        self.image_stacked = czi_helper.min_ip_stacking(image_array, self.region, z_level, self.czi_format)
 
 
     def segment_hyphae(self):
@@ -113,27 +82,25 @@ class HyphaePipeline(object):
         self.slide_name = slide_name
         self.cnn_model = cnn_model
         self.source_path = source_path
-        self.destination_path_org = destination_path
+        self.destination_path = destination_path
         self.experiment = experiment
         self.hai = hai
         self.czi_format = None
-        #self.file_results_name = file_results_name
-        #self.file_results_hyphae_avg_name = file_results_hyphae_avg_name
-        #self.file_results_leaf_area = file_results_leaf_area
-
-
-
 
 
         print('...Analyzing slide ' + self.slide_name)
         self.read_images()
-        # #self.load_models()
-        # for self.region in range(self.regions):
-        #     print (self.region)
-        #     self.destination_path = os.path.join(self.destination_path_org, self.experiment, self.hai, self.slide_name, str(self.region))
-        #     self.create_folder_structure()
-        #
-        #     self.stack_images(self.image_array, self.region, self.z_level)
+        self.czi_meta_info()
+       # print(self.image_array.shape)#, self.czi_format, self.z_level, self.regions)
+
+        # We loop over all regions on the CZI image
+        for self.region in range(self.regions):
+            print (self.region)
+            destination_path_full = os.path.join(self.destination_path, self.experiment, self.hai, self.slide_name, str(self.region))
+            label_path = os.path.join(self.destination_path, self.experiment, 'Label')
+            self.create_folder_structure(destination_path_full, )
+
+            self.stack_images(self.image_array, self.region, self.z_level)
         #
         #     self.segment_hyphae()
         #     #import cv2

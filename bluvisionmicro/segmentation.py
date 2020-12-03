@@ -3,7 +3,7 @@ import numpy as np
 from skimage import img_as_ubyte, img_as_uint
 from skimage.morphology import binary_closing, dilation
 from skimage.filters import threshold_yen
-from hyphae_cmd.color_spaces import rgb_to_yq1q2
+from bluvisionmicro.image_processing import rgb_to_yq1q2
 
 
 def threshold_image(image_stacked):
