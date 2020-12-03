@@ -42,15 +42,16 @@ if not segmenter_class:
     raise argparse.ArgumentError("Invalid segmentation method '{}'".format(procedure))
 
 for experiment in experiments:
-    # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
-    bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, 'Label'))
+
     # Experiments can have several pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
     for hai in hais:
-        # We get all CZI images inside for the particular inoculation time point
-        images = os.listdir(os.path.join(source_path, experiment, hai))
-        print (images)
-        for slide_name in images[0:1]:
-            args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
-            segmenter_class().start_pipeline(args)
+        if hai.find('hai') != -1:
+            # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
+            #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
+            # We get all CZI images inside for the particular inoculation time point
+            images = os.listdir(os.path.join(source_path, experiment, hai))
+            for slide_name in images[1:2]:
+                args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
+                segmenter_class().start_pipeline(args)

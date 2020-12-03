@@ -1,8 +1,10 @@
 import os
 #import joblib
-from czifile import CziFile
+#from czifile import CziFile
+import cv2
 import czi_helper
-
+import bluvisionmicro.io
+import bluvisionmicro.image_processing
 
 #from hyphae_cmd.helpers import min_ip_stacking, get_leaf_area, get_hyphae_area, calculate_avg_hyphae_area
 #from hyphae_cmd.segmentation import segment, get_all_rois, filter_rois
@@ -30,27 +32,17 @@ class HyphaePipeline(object):
     def __init__(self):
         print ('start')
 
-
-    def create_folder_structure(self):
-        """Create all necessary folders."""
-        if not os.path.exists(os.path.join(self.destination_path)):
-            os.makedirs(os.path.join(self.destination_path))
-
-            # try:
-            #     os.makedirs(os.path.join(destination_path, experiment, hai))
-            # except FileExistsError:
-            #     pass
-
     def read_images(self):
         """Reading and the czi images."""
-        self.image_array = czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment, self.hai), self.slide_name)
+        self.image_array = czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment, self.hai),
+                                                     self.slide_name)
 
     def czi_meta_info(self):
         self.czi_format, self.z_level, self.regions = czi_helper.get_czi_meta_info(self.image_array)
 
-
-    def stack_images(self, image_array, region, z_level):
-        self.image_stacked = czi_helper.min_ip_stacking(image_array, self.region, z_level, self.czi_format)
+    def stack_images(self):
+        self.image_stacked = bluvisionmicro.image_processing.min_ip_stacking(self.image_array, self.region,
+                                                                             self.z_level, self.czi_format)
 
 
     def segment_hyphae(self):
@@ -87,20 +79,23 @@ class HyphaePipeline(object):
         self.hai = hai
         self.czi_format = None
 
-
         print('...Analyzing slide ' + self.slide_name)
+        # We read the CZI file as numpy array in memory
         self.read_images()
+        # Get some meta information about the file
         self.czi_meta_info()
-       # print(self.image_array.shape)#, self.czi_format, self.z_level, self.regions)
 
         # We loop over all regions on the CZI image
         for self.region in range(self.regions):
-            print (self.region)
-            destination_path_full = os.path.join(self.destination_path, self.experiment, self.hai, self.slide_name, str(self.region))
-            label_path = os.path.join(self.destination_path, self.experiment, 'Label')
-            self.create_folder_structure(destination_path_full, )
 
-            self.stack_images(self.image_array, self.region, self.z_level)
+            # We create the destination paths
+            bluvisionmicro.io.create_folders(os.path.join(self.destination_path, self.experiment, self.hai,
+                                                          self.slide_name, str(self.region)))
+
+            # We create a stacked image from the z-stack
+            self.stack_images()
+
+            #cv2.imwrite(str(self.slide_name) + str(self.region) + '.png', self.image_stacked)
         #
         #     self.segment_hyphae()
         #     #import cv2
