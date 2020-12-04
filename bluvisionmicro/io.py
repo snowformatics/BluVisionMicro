@@ -1,7 +1,6 @@
 import os
 import cv2
 import pandas as pd
-import csv
 
 
 def create_folders(path_to_create):

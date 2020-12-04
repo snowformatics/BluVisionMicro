@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+
 def get_hyphae_area(destination_path):
     hyphae_area_lst = []
     for subdir, dirs, files in os.walk(destination_path):
@@ -17,7 +18,6 @@ def get_hyphae_area(destination_path):
 
 def calculate_avg_hyphae_area(data_lst):
     """Calculate the mean and std for hyphae per slide."""
-    #data = pd.read_csv(file_hyphae_area, sep=";", header=0)
     data = pd.DataFrame(data_lst, columns=['Slide_name', 'Region', 'Prediction%', 'Leaf_area'])
     data["Leaf_area"] = pd.to_numeric(data["Leaf_area"])
     hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'std', 'count']})
