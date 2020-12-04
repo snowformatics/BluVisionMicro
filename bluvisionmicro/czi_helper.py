@@ -1,6 +1,6 @@
 import os
 from czifile import CziFile
-
+from xml.dom.minidom import parseString
 
 def read_czi_image(source_path, slide_name):
     """Reading and the czi images."""
@@ -24,10 +24,44 @@ def get_czi_meta_info(image_array):
         regions = int(image_array.shape[1])
     return czi_format, z_level, regions
 
+def calculate_area_polygon(corners):
+    n = len(corners) # of corners
+    area = 0.0
+    for i in range(n):
+        j = (i + 1) % n
+        area += corners[i][0] * corners[j][1]
+        area -= corners[j][0] * corners[i][1]
+    area = abs(area) / 2.0
+    return area
 
-def get_polygon(self):
-    with CziFile(os.path.join(self.source_path, self.slide_name)) as self.czi:
-        itemlist = self.czi.metadata()
-        get_leaf_area(self.slide_name, itemlist, self.file_results_leaf_area)
+
+def get_leaf_area(slide_name, czi_xml):
+    #file_results_leaf_area = open(file_results_leaf_area_name, 'a')
+    xmldoc = parseString(czi_xml)
+    tile_region= xmldoc.getElementsByTagName('TileRegion')
+    leaf_area_lst = []
+    for region in range(len(tile_region)):
+
+        scan_region = tile_region.item(region).getElementsByTagName('Points')
+        polygon = scan_region[0].firstChild.data
+        polygon = polygon.split(' ')
+        polygon_as_tuple = []
+        for points in polygon:
+            polygon_as_tuple.append((float(points.split(',')[0]), float(points.split(',')[1])))
+        leaf_area = calculate_area_polygon(polygon_as_tuple)
+
+        leaf_area_lst.append((slide_name, region, round(leaf_area, 0)))
+
+        #file_results_leaf_area.write(str(slide_name) + ';' + str(region) + ';' + str(round(leaf_area, 0)) + '\n')
+    return leaf_area_lst
+
+
+def get_polygon(source_path, slide_name):
+
+    with CziFile(os.path.join(source_path, slide_name)) as czi:
+        itemlist = czi.metadata()
+
+        leaf_area_lst = get_leaf_area(slide_name, itemlist)
+    return leaf_area_lst
 
 

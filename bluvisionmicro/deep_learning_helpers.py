@@ -17,7 +17,7 @@ def classify_object(filtered_contour_objects, stacked_image, cnn_model, destinat
             # that were preprocessed in the following way:
             img_tensor /= 255.
             preds = cnn_model.predict(img_tensor)
-            file_name = str(coord[4]) + '_' +  str(round(preds[0][0] * 100, 2)) + '_' + slide_name + '.png'
+            file_name = str(coord[4]) + '_' + str(round(preds[0][0] * 100, 2)) + '_' + slide_name + '.png'
 
             if round(preds[0][0] * 100, 2) == 0.0:
             #if round(preds[0][0] * 100, 2) <= 5.0:
