@@ -50,7 +50,7 @@ def get_leaf_area(slide_name, czi_xml):
             polygon_as_tuple.append((float(points.split(',')[0]), float(points.split(',')[1])))
         leaf_area = calculate_area_polygon(polygon_as_tuple)
 
-        leaf_area_lst.append((slide_name, region, round(leaf_area, 0)))
+        leaf_area_lst.append([slide_name, region, round(leaf_area, 0)])
 
         #file_results_leaf_area.write(str(slide_name) + ';' + str(region) + ';' + str(round(leaf_area, 0)) + '\n')
     return leaf_area_lst

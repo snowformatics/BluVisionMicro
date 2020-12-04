@@ -58,15 +58,15 @@ for experiment in experiments:
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
             images = os.listdir(os.path.join(source_path, experiment, hai))
-            for slide_name in images:
-                if mode == "analysis":
+            if mode == "analysis":
+                for slide_name in images:
                     args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
                     segmenter_class().start_pipeline(args)
-                # Result mode after cleaning false positives
-                elif mode == "results":
-                    print (mode)
-                    args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
-                    bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
+            # Result mode after cleaning false positives
+            elif mode == "results":
+                print (mode)
+                args = [images, source_path, destination_path, experiment, hai]
+                bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
 
 
 

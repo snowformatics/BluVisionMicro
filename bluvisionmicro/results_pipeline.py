@@ -14,28 +14,33 @@ class ResultsPipeline(object):
     def __init__(self):
         print ('start')
 
-    def get_leaf_area(self):
-        self.leaf_area = bluvisionmicro.czi_helper.get_polygon((os.path.join(self.source_path, self.experiment,
-                                                                                 self.hai)),
-                                                                self.slide_name)
+    def get_leaf_area(self, slides):
+        self.slide_area_all = []
+        for slide_name in slides:
+            leaf_area = bluvisionmicro.czi_helper.get_polygon((os.path.join(self.source_path, self.experiment,
+                                                                                     self.hai)), slide_name)
+            self.slide_area_all.append(leaf_area)
+
+    def write_data_csv(self, data, file_name, header):
+        bluvisionmicro.io.write_csv(data, file_name, header)
 
 
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
-        slide_name, cnn_model, source_path, destination_path, experiment, hai = args
-        self.slide_name = slide_name
-        self.cnn_model = cnn_model
+        images, source_path, destination_path, experiment, hai = args
+        self.slides = images
         self.source_path = source_path
         self.destination_path = destination_path
         self.experiment = experiment
         self.hai = hai
         self.czi_format = None
 
-        print('...Analyzing slide ' + self.slide_name)
-        # We read the CZI file as numpy array in memory
-        self.get_leaf_area()
-        print (self.leaf_area)
+        # Extract the leaf area for each leaf
+        self.get_leaf_area(self.slides)
+        # Write leaf area into CSV file
+        self.write_data_csv(self.slide_area_all, 'test.csv', ['Slide_name', 'Region', 'Leaf_area'])
+
         # # Get some meta information about the file
         # self.czi_meta_info()
         #
