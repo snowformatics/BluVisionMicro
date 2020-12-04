@@ -4,6 +4,7 @@ import bluvisionmicro.io
 import bluvisionmicro.image_processing
 import bluvisionmicro.segmentation
 import bluvisionmicro.deep_learning_helpers
+import bluvisionmicro.get_results
 
 
 class ResultsPipeline(object):
@@ -19,12 +20,23 @@ class ResultsPipeline(object):
         for slide_name in slides:
             leaf_area = bluvisionmicro.czi_helper.get_polygon((os.path.join(self.source_path, self.experiment,
                                                                                      self.hai)), slide_name)
-            self.slide_area_all.append(leaf_area)
+            for l in leaf_area:
+                self.slide_area_all.append(l)
+
+    def get_hyphae_area(self):
+        self.hyphae_area_lst = bluvisionmicro.get_results.get_hyphae_area(self.destination_path)
+
+    def get_hyphae_area_avg(self):
+        self.hyphae_area_avg_lst = bluvisionmicro.get_results.calculate_avg_hyphae_area(self.hyphae_area_lst)
+
+
+    def get_slide_labels(self, slides):
+        for slide_name in slides:
+            bluvisionmicro.czi_helper.get_label((os.path.join(self.source_path, self.experiment,self.hai)), None,
+                                                slide_name)
 
     def write_data_csv(self, data, file_name, header):
         bluvisionmicro.io.write_csv(data, file_name, header)
-
-
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
@@ -38,8 +50,22 @@ class ResultsPipeline(object):
 
         # Extract the leaf area for each leaf
         self.get_leaf_area(self.slides)
-        # Write leaf area into CSV file
-        self.write_data_csv(self.slide_area_all, 'test.csv', ['Slide_name', 'Region', 'Leaf_area'])
+
+        # Extract Hyphae area
+        self.get_hyphae_area()
+
+        # Calculate average hyphae area per leaf
+        self.get_hyphae_area_avg()
+
+        # Write leaf area, hyphae area and average hyphae area to CSV file
+        print (self.hyphae_area_avg_lst)
+        result_lst = [[self.slide_area_all, 'test.csv', ['Slide_name', 'Region', 'Leaf_area']],
+                      [self.hyphae_area_lst, 'test2.csv', ['Slide_name', 'Region', 'Prediction%', 'Leaf_area']],
+                      [self.hyphae_area_avg_lst, 'test3.csv', ["slide_name", "Slide_region", "mean_area", "std_area", "nr_of_colonies"]]]
+        for result in result_lst:
+            self.write_data_csv(result[0], result[1], result[2])
+
+
 
         # # Get some meta information about the file
         # self.czi_meta_info()
