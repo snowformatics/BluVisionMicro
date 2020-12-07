@@ -58,5 +58,5 @@ def combine_boxes(boxes):
 #          [31, 69, 201, 125], [18, 63, 235, 135],
 #          [50, 72, 197, 121], [54, 72, 198, 120],
 #          [38, 65, 10, 10], [36, 60, 180, 108]]
-#
-# print (combine_boxes(boxes))
+
+#print (len(combine_boxes(boxes)))

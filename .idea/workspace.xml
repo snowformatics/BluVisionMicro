@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ef56e8-1b34-4666-95be-0747da98e508" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BluVisionMicro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BluVisionMicro.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluvisionmicro/roi_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/roi_helpers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +21,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="2ced80ee-831e-4013-940e-02c0250c272a" />
-  </component>
   <component name="ProjectId" id="1kMqfkftpxxeMIZIJHvnKjqus5L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -34,9 +32,136 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../benchmark" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bluvisionmicro" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\stefanie\PycharmProjects\BluVisionMicro\bluvisionmicro" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.roi_helpers">
+    <configuration name="hyphae_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/hyphae_pipeline.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hyphae_results" type="PythonConfigurationType" factoryName="Python">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/cli.py" />
+      <option name="PARAMETERS" value="-s D:\CZI\ -d D:\CZI\out\ -p mildew -m results" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hyphae_run" type="PythonConfigurationType" factoryName="Python">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/cli.py" />
+      <option name="PARAMETERS" value="-s D:\CZI\ -d D:\CZI\out\ -p mildew -m analysis -se 0.00" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="roi_helpers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/roi_helpers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Anaconda\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.hyphae_run" />
+      <item itemvalue="Python.hyphae_results" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.hyphae_pipeline" />
+      <item itemvalue="Python.roi_helpers" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.roi_helpers" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.hyphae_pipeline" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -48,19 +173,138 @@
       <option name="presentableId" value="Default" />
       <updated>1605520913716</updated>
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1606681124751</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606681124751</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add read image">
+      <created>1606991651716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606991651716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added meta info method">
+      <created>1606995578125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606995578125</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added stacking method">
+      <created>1606998826070</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606998826070</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add prediction">
+      <created>1607000630826</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607000630826</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add prediction">
+      <created>1607000886417</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1607000886417</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add results class leaf area method">
+      <created>1607077635849</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607077635849</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add results class leaf area method">
+      <created>1607079064622</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607079064622</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add results class leaf area method">
+      <created>1607085375642</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607085375642</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add results class leaf area method">
+      <created>1607085491354</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607085491354</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add train cnn">
+      <created>1607328663442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1607328663442</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add train cnn">
+      <created>1607329566844</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1607329566844</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add train cnn">
+      <created>1607329648325</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1607329648325</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="test" />
+    <MESSAGE value="add read image" />
+    <MESSAGE value="added meta info method" />
+    <MESSAGE value="added stacking method" />
+    <MESSAGE value="add prediction" />
+    <MESSAGE value="add results class leaf area method" />
+    <MESSAGE value="add train cnn" />
+    <option name="LAST_COMMIT_MESSAGE" value="add train cnn" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="800" y="184" key="CommitChangelistDialog2" timestamp="1605522053978">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="-1897" y="2" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607329547486">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
     </state>
+    <state x="-1897" y="2" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329547486" />
+    <state x="398" y="111" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606826236634" />
+    <state x="-1621" y="-10" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1607329534288">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state x="-1621" y="-10" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329534288" />
+    <state x="-1544" y="421" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog" timestamp="1606992146950">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state x="-1544" y="421" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1606992146950" />
+    <state x="-1475" y="382" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1607083886875">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state x="-1475" y="382" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607083886875" />
+    <state x="-1760" y="-186" key="CommitChangelistDialog2" timestamp="1607329647719">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state x="-1760" y="-186" key="CommitChangelistDialog2/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329647719" />
+    <state x="480" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1606681124022" />
     <state x="800" y="184" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605522053978" />
-    <state x="1007" y="394" key="FileChooserDialogImpl" timestamp="1605520941076">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="604" y="232" key="FileChooserDialogImpl" timestamp="1606826199145">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="604" y="232" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606826199145" />
     <state x="1007" y="394" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1605520941076" />
     <state x="1105" y="572" key="Github.ShareDialog" timestamp="1605521954918">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -70,13 +314,37 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1022" y="332" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605521841457" />
-    <state x="656" y="257" key="SettingsEditor" timestamp="1605522799142">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="2533" height="348" key="GridCell.Tab.0.bottom" timestamp="1607329784094">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
     </state>
+    <state width="2533" height="348" key="GridCell.Tab.0.bottom/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329784094" />
+    <state width="1515" height="291" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606825225620" />
+    <state width="2533" height="348" key="GridCell.Tab.0.center" timestamp="1607329784094">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state width="2533" height="348" key="GridCell.Tab.0.center/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329784094" />
+    <state width="1515" height="291" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606825225620" />
+    <state width="2533" height="348" key="GridCell.Tab.0.left" timestamp="1607329784094">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state width="2533" height="348" key="GridCell.Tab.0.left/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329784094" />
+    <state width="1515" height="291" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606825225620" />
+    <state width="2533" height="348" key="GridCell.Tab.0.right" timestamp="1607329784094">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state width="2533" height="348" key="GridCell.Tab.0.right/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329784094" />
+    <state width="1515" height="291" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606825225620" />
+    <state x="-1903" y="9" key="SettingsEditor" timestamp="1607076347985">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
+    </state>
+    <state x="-1903" y="9" key="SettingsEditor/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607076347985" />
+    <state x="394" y="115" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606826219297" />
     <state x="656" y="257" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605522799142" />
-    <state x="772" y="366" key="Vcs.Push.Dialog.v2" timestamp="1605522552357">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="-1788" y="179" key="Vcs.Push.Dialog.v2" timestamp="1607329649857">
+      <screen x="-2560" y="-186" width="2560" height="1400" />
     </state>
+    <state x="-1788" y="179" key="Vcs.Push.Dialog.v2/0.0.1536.824/-2560.-186.2560.1400@-2560.-186.2560.1400" timestamp="1607329649857" />
+    <state x="463" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606681127790" />
     <state x="772" y="366" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605522552357" />
   </component>
 </project>
