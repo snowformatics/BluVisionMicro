@@ -4,7 +4,7 @@ import bluvisionmicro.io
 import bluvisionmicro.image_processing
 import bluvisionmicro.segmentation
 import bluvisionmicro.deep_learning_helpers
-import bluvisionmicro.get_results
+import bluvisionmicro.roi_helpers
 
 
 class ResultsPipeline(object):
@@ -24,10 +24,10 @@ class ResultsPipeline(object):
                 self.slide_area_all.append(l)
 
     def get_hyphae_area(self):
-        self.hyphae_area_lst = bluvisionmicro.get_results.get_hyphae_area(self.destination_path)
+        self.hyphae_area_lst = bluvisionmicro.roi_helpers.get_hyphae_area(self.destination_path)
 
     def get_hyphae_area_avg(self):
-        self.hyphae_area_avg_lst = bluvisionmicro.get_results.calculate_avg_hyphae_area(self.hyphae_area_lst)
+        self.hyphae_area_avg_lst = bluvisionmicro.roi_helpers.calculate_avg_hyphae_area(self.hyphae_area_lst)
 
     def get_slide_labels(self, slides):
         for slide_name in slides:
