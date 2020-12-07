@@ -29,7 +29,6 @@ class ResultsPipeline(object):
     def get_hyphae_area_avg(self):
         self.hyphae_area_avg_lst = bluvisionmicro.get_results.calculate_avg_hyphae_area(self.hyphae_area_lst)
 
-
     def get_slide_labels(self, slides):
         for slide_name in slides:
             bluvisionmicro.czi_helper.get_label((os.path.join(self.source_path, self.experiment,self.hai)), None,

@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 
 def get_hyphae_area(destination_path):
@@ -23,3 +24,39 @@ def calculate_avg_hyphae_area(data_lst):
     hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'std', 'count']})
     hyphae_area_avg.columns = hyphae_area_avg.columns.droplevel()
     return hyphae_area_avg
+
+
+def union(a,b):
+  x = min(a[0], b[0])
+  y = min(a[1], b[1])
+  w = max(a[0]+a[2], b[0]+b[2]) - x
+  h = max(a[1]+a[3], b[1]+b[3]) - y
+  return (x, y, w, h)
+
+
+def intersection(a,b):
+  x = max(a[0], b[0])
+  y = max(a[1], b[1])
+  w = min(a[0]+a[2], b[0]+b[2]) - x
+  h = min(a[1]+a[3], b[1]+b[3]) - y
+  if w<0 or h<0: return () # or (0,0,0,0) ?
+  return (x, y, w, h)
+
+
+def combine_boxes(boxes):
+    new_array = []
+    for boxa, boxb in zip(boxes, boxes[1:]):
+        if intersection(boxa, boxb):
+            new_array.append(union(boxa, boxb))
+        else:
+            new_array.append(boxa)
+    return np.array(new_array).astype('int')
+
+
+# boxes = [[55, 67, 10, 10], [54, 66, 198, 114],
+#         [49, 75, 203, 125], [42, 78, 186, 126],
+#          [31, 69, 201, 125], [18, 63, 235, 135],
+#          [50, 72, 197, 121], [54, 72, 198, 120],
+#          [38, 65, 10, 10], [36, 60, 180, 108]]
+#
+# print (combine_boxes(boxes))

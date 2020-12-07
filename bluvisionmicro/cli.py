@@ -15,6 +15,10 @@ parser.add_argument('-p', '--pathogen', required=True,
                     help='Pathogen')
 parser.add_argument('-m', '--mode', required=True,
                     help='Software mode.')
+parser.add_argument('-se', '--sensitivity', required=True,
+                    help='sensitivity to predict hyphae objects.')
+
+
 
 
 # We get all the arguments from the user input
@@ -33,6 +37,8 @@ destination_path = args.destination_path
 pathogen = args.pathogen
 # Load software mode
 mode = args.mode
+# Sensitivity to predict hyphae objects.
+sensitivity = args.sensitivity
 # List of experiments
 experiments = os.listdir(source_path)
 # Load CNN Model for prediction
@@ -60,7 +66,7 @@ for experiment in experiments:
             images = os.listdir(os.path.join(source_path, experiment, hai))
             if mode == "analysis":
                 for slide_name in images:
-                    args = [slide_name, cnn_model, source_path, destination_path, experiment, hai]
+                    args = [slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity]
                     segmenter_class().start_pipeline(args)
             # Result mode after cleaning false positives
             elif mode == "results":

@@ -50,17 +50,19 @@ class HyphaePipeline(object):
 
     def predict_hyphae(self):
         bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
-                                                             self.cnn_model, self.destination_path,self.slide_name)
+                                                             self.cnn_model, self.destination_path,self.slide_name,
+                                                             self.sensitivity)
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
-        slide_name, cnn_model, source_path, destination_path, experiment, hai = args
+        slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity = args
         self.slide_name = slide_name
         self.cnn_model = cnn_model
         self.source_path = source_path
         self.destination_path = destination_path
         self.experiment = experiment
         self.hai = hai
+        self.sensitivity = sensitivity
         self.czi_format = None
 
         print('...Analyzing slide ' + self.slide_name)

@@ -19,9 +19,12 @@ def classify_object(filtered_contour_objects, stacked_image, cnn_model, destinat
             preds = cnn_model.predict(img_tensor)
             file_name = str(coord[4]) + '_' + str(round(preds[0][0] * 100, 2)) + '_' + slide_name + '.png'
 
-            if round(preds[0][0] * 100, 2) == 0.0:
-            #if round(preds[0][0] * 100, 2) <= 5.0:
-                cv2.imwrite(os.path.join(destination_path, file_name), roi_original)
+            if float(sensitivity) == 0.0:
+                if round(preds[0][0] * 100, 2) == 0.0:
+                    cv2.imwrite(os.path.join(destination_path, file_name), roi_original)
+            else:
+                if round(preds[0][0] * 100, 2) >= float(sensitivity):
+                    cv2.imwrite(os.path.join(destination_path, file_name), roi_original)
         except cv2.error:
             print(roi_original.shape)
 
