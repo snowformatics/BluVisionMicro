@@ -42,8 +42,8 @@ sensitivity = args.sensitivity
 # List of experiments
 experiments = os.listdir(source_path)
 # Load CNN Model for prediction
-#cnn_model = load_model('09112020_1.h5')
-cnn_model = None
+cnn_model = load_model('09112020_1.h5')
+#cnn_model = None
 
 # Connect segmenter class to the pathogen argument
 segmenter_class = {

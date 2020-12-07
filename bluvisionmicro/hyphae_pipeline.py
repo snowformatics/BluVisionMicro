@@ -50,7 +50,9 @@ class HyphaePipeline(object):
 
     def predict_hyphae(self):
         bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
-                                                             self.cnn_model, self.destination_path,self.slide_name,
+                                                             self.cnn_model, os.path.join(self.source_path,
+                                                                                          self.experiment, self.hai),
+                                                             self.slide_name,
                                                              self.sensitivity)
 
     def start_pipeline(self, args):
@@ -90,21 +92,8 @@ class HyphaePipeline(object):
             # We apply some simple geometric filters to remove some trash objects (to small, to large etc.)
             self.filter_contours()
 
+
             # We classify the objects with a CNN model
             self.predict_hyphae()
 
 
-            #bluvisionmicro.io.save_image(str(self.slide_name) + str(self.region) + 'binary.png', self.binary_image)
-
-
-
-
-        #     all_rois2 = self.get_rois()
-        #     filtered_rois = self.filter_roi(all_rois2)
-        #     self.predict_rois()
-        #     self.czi.close()
-        #
-        # self.get_polygon()
-        # #get_hyphae_area(os.path.join(self.destination_path_org, self.experiment), self.file_results_name)
-        # #calculate_avg_hyphae_area(os.path.join(self.destination_path_org, self.experiment), self.file_results_name, self.file_results_hyphae_avg_name)
-        #
