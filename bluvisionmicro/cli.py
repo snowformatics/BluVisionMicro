@@ -15,7 +15,7 @@ parser.add_argument('-p', '--pathogen', required=True,
                     help='Pathogen')
 parser.add_argument('-m', '--mode', required=True,
                     help='Software mode.')
-parser.add_argument('-se', '--sensitivity', required=True,
+parser.add_argument('-se', '--sensitivity', required=False,
                     help='sensitivity to predict hyphae objects.')
 
 

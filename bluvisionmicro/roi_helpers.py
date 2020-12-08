@@ -6,14 +6,22 @@ import numpy as np
 def get_hyphae_area(destination_path):
     hyphae_area_lst = []
     for subdir, dirs, files in os.walk(destination_path):
-        for file in files:
-            if os.path.join(subdir, file).endswith('.png'):
-                file_name = os.path.join(subdir, file).split('\\')
-                slide_name = file_name[-3]
-                region = file_name[-2]
-                area = file_name[-1].split('_')[1]
-                prediction =  file_name[-1].split('_')[0]
-                hyphae_area_lst.append([slide_name, region, area, prediction])
+        if subdir.endswith('0') or subdir.endswith('1'):
+            # We need also zero colonies report in result file
+            if len(files) == 0:
+                file_name = subdir.split('\\')
+                slide_name = file_name[5]
+                region = file_name[6]
+                hyphae_area_lst.append([slide_name, region, None, None])
+            else:
+                for file in files:
+                    if os.path.join(subdir, file).endswith('.png'):
+                        file_name = os.path.join(subdir, file).split('\\')
+                        slide_name = file_name[-3]
+                        region = file_name[-2]
+                        area = file_name[-1].split('_')[1]
+                        prediction =  file_name[-1].split('_')[0]
+                        hyphae_area_lst.append([slide_name, region, area, prediction])
     return hyphae_area_lst
 
 
@@ -26,7 +34,7 @@ def calculate_avg_hyphae_area(data_lst):
     return hyphae_area_avg
 
 
-def union(a,b):
+def union(a, b):
   x = min(a[0], b[0])
   y = min(a[1], b[1])
   w = max(a[0]+a[2], b[0]+b[2]) - x
@@ -34,7 +42,7 @@ def union(a,b):
   return (x, y, w, h)
 
 
-def intersection(a,b):
+def intersection(a, b):
   x = max(a[0], b[0])
   y = max(a[1], b[1])
   w = min(a[0]+a[2], b[0]+b[2]) - x

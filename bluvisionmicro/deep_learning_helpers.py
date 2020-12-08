@@ -5,7 +5,6 @@ from keras.preprocessing import image
 
 
 def classify_object(filtered_contour_objects, stacked_image, cnn_model, destination_path, slide_name, sensitivity):
-    print (destination_path)
     for coord in filtered_contour_objects:
         # We extract the rois for each focal plane by coordinates from the CZI file
         roi_original = stacked_image[coord[0]-25:coord[1]-25+50, coord[2]-25:coord[3]-25+50]

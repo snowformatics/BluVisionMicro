@@ -4,6 +4,7 @@ import bluvisionmicro.io
 import bluvisionmicro.image_processing
 import bluvisionmicro.segmentation
 import bluvisionmicro.deep_learning_helpers
+import bluvisionmicro.roi_helpers
 
 
 class HyphaePipeline(object):
@@ -48,11 +49,12 @@ class HyphaePipeline(object):
     def filter_contours(self):
         self.filtered_contour_objects = bluvisionmicro.segmentation.filter_contours(self.all_contour_objects)
 
-    def predict_hyphae(self):
+    def remove_overlapping_contours(self):
+        self.filtered_contour_objects2 = bluvisionmicro.roi_helpers.combine_boxes(self.filtered_contour_objects)
+
+    def predict_hyphae(self, roi_path):
         bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
-                                                             self.cnn_model, os.path.join(self.source_path,
-                                                                                          self.experiment, self.hai),
-                                                             self.slide_name,
+                                                             self.cnn_model, roi_path, self.slide_name,
                                                              self.sensitivity)
 
     def start_pipeline(self, args):
@@ -76,9 +78,11 @@ class HyphaePipeline(object):
         # We loop over all regions on the CZI image
         for self.region in range(self.regions):
 
+            # Roi path
+            roi_path = os.path.join(self.destination_path, self.experiment, self.hai, self.slide_name, str(self.region))
+
             # We create the destination paths
-            bluvisionmicro.io.create_folders(os.path.join(self.destination_path, self.experiment, self.hai,
-                                                          self.slide_name, str(self.region)))
+            bluvisionmicro.io.create_folders(roi_path)
 
             # We create a stacked image from the z-stack
             self.stack_images()
@@ -92,8 +96,11 @@ class HyphaePipeline(object):
             # We apply some simple geometric filters to remove some trash objects (to small, to large etc.)
             self.filter_contours()
 
+            #self.remove_overlapping_contours()
+
+            #print (len(self.filtered_contour_objects), len(self.filtered_contour_objects2))
 
             # We classify the objects with a CNN model
-            self.predict_hyphae()
+            #self.predict_hyphae(roi_path)
 
 
