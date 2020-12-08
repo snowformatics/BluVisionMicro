@@ -31,7 +31,9 @@ def calculate_avg_hyphae_area(data_lst):
     data["Leaf_area"] = pd.to_numeric(data["Leaf_area"])
     hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'std', 'count']})
     hyphae_area_avg.columns = hyphae_area_avg.columns.droplevel()
-    return hyphae_area_avg
+    hyphae_area_avg_round = hyphae_area_avg.round(decimals=1)
+    print (hyphae_area_avg_round)
+    return hyphae_area_avg_round
 
 
 def union(a, b):
