@@ -63,7 +63,7 @@ for experiment in experiments:
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
-            images = os.listdir(os.path.join(source_path, experiment, hai))
+            images = os.listdir(os.path.join(source_path, experiment, hai))[1:2]
             if mode == "analysis":
                 for slide_name in images:
                     args = [slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity]

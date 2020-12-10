@@ -2,9 +2,12 @@ import numpy as np
 import cv2
 import os
 from keras.preprocessing import image
+import bluvisionmicro.io
 
 
 def classify_object(filtered_contour_objects, stacked_image, cnn_model, destination_path, slide_name, sensitivity):
+    # y, y + height, x, x + width, area
+    positive_roi_lst = []
     for coord in filtered_contour_objects:
         # We extract the rois for each focal plane by coordinates from the CZI file
         roi_original = stacked_image[coord[0]-25:coord[1]-25+50, coord[2]-25:coord[3]-25+50]
@@ -24,11 +27,18 @@ def classify_object(filtered_contour_objects, stacked_image, cnn_model, destinat
             if float(sensitivity) == 0.00:
                 if round(preds[0][0] * 100, 2) == 0.0:
                     cv2.imwrite(os.path.join(destination_path, file_name), roi_original)
+                    positive_roi_lst.append([coord[2], coord[0], coord[3], coord[1]])
             else:
                 if round(preds[0][0] * 100, 2) <= float(sensitivity):
                     cv2.imwrite(os.path.join(destination_path, file_name), roi_original)
+                    positive_roi_lst.append([coord[2], coord[0], coord[3], coord[1]])
+
+
         except cv2.error:
             print(roi_original.shape)
+
+    return positive_roi_lst
+
 
 
 def train_cnn():

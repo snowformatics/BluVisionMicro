@@ -47,13 +47,13 @@ class HyphaePipeline(object):
         self.all_contour_objects = bluvisionmicro.segmentation.get_all_contours(self.binary_image)
 
     def filter_contours(self):
-        self.filtered_contour_objects = bluvisionmicro.segmentation.filter_contours(self.all_contour_objects)
+        self.filtered_contour_objects = bluvisionmicro.segmentation.filter_contours(self.all_contour_objects, self.stacked_image)
 
     def remove_overlapping_contours(self):
         self.filtered_contour_objects2 = bluvisionmicro.roi_helpers.combine_boxes(self.filtered_contour_objects)
 
     def predict_hyphae(self, roi_path):
-        bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
+        self.positive_roi_lst = bluvisionmicro.deep_learning_helpers.classify_object(self.filtered_contour_objects, self.stacked_image,
                                                              self.cnn_model, roi_path, self.slide_name,
                                                              self.sensitivity)
 
@@ -96,11 +96,25 @@ class HyphaePipeline(object):
             # We apply some simple geometric filters to remove some trash objects (to small, to large etc.)
             self.filter_contours()
 
+            # We classify the objects with a CNN model
+            self.predict_hyphae(roi_path)
+            imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
+
+            # l = []
+            # import cv2
+            # for i in self.all_contour_objects:
+            #     x, y, width, height = cv2.boundingRect(i)
+            #     #area = cv2.contourArea(i)
+            #     #if area > 5000 and area < 50000:
+            #     l.append([x, y, width, height])
+            #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, l)
+            bluvisionmicro.io.save_image('canny' + self.slide_name + str(self.region) + '.png', imgage_rectangles)
+            #bluvisionmicro.io.save_image('binary' + self.slide_name + str(self.region) + '.png', self.binary_image)
+
             #self.remove_overlapping_contours()
 
             #print (len(self.filtered_contour_objects), len(self.filtered_contour_objects2))
 
-            # We classify the objects with a CNN model
-            #self.predict_hyphae(roi_path)
+
 
 

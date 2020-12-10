@@ -19,15 +19,20 @@ def threshold_image(image_stacked):
     binary_image = q2_channel < binary_image
     binary_image = img_as_uint(binary_image)
 
+    #kernel = np.ones((10, 10), np.uint8)
+    #binary_image = cv2.erode(binary_image, kernel, iterations=1)
+
     return binary_image
 
 
 def get_all_contours(binary_image):
+    #edges = cv2.Canny(binary_image, 100, 200)
+    #(contours, _) = cv2.findContours(img_as_ubyte(edges), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     (contours, _) = cv2.findContours(img_as_ubyte(binary_image), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     return contours
 
 
-def filter_contours(all_rois):
+def filter_contours(all_rois, image):
     """Filter the contours by low level features like size and ration. Optimized for hyphea.
         Args:
           contours : The contours of the binary image_name.
@@ -50,6 +55,12 @@ def filter_contours(all_rois):
     for cnt in all_rois:
         x, y, width, height = cv2.boundingRect(cnt)
         # We apply a very simple rough filter with geometrical parameters, to exclude very large or small objects
+        # if len(cnt) > 5000:
+        #     #i = image[x:x+height, y:y+width]
+        #     i = image[y:y + width, x:x + height]
+        #     cv2.imwrite(str(x) + str(y) + str(width) + str(height) + '.png', i)
+        #     #cv2.imshow('', i)
+        #     #cv2.waitKey(0)
         if len(cnt) > min_len_cnt and len(cnt) < max_len_cnt:
             if width < max_hyphae_width and height < max_hyphae_height:
                 if float(width / height) < max_aspect_ratio or float(width / height) > min_aspect_ratio:
