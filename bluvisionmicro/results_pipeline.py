@@ -24,7 +24,8 @@ class ResultsPipeline(object):
                 self.slide_area_all.append(l)
 
     def get_hyphae_area(self):
-        self.hyphae_area_lst = bluvisionmicro.roi_helpers.get_hyphae_area(self.destination_path)
+        self.hyphae_area_lst = bluvisionmicro.roi_helpers.get_hyphae_area(os.path.join(self.destination_path,
+                                                                                       self.experiment, self.hai))
 
     def get_hyphae_area_avg(self):
         self.hyphae_area_avg_lst = bluvisionmicro.roi_helpers.calculate_avg_hyphae_area(self.hyphae_area_lst)

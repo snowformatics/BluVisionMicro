@@ -1,6 +1,8 @@
 import argparse
 import os
+import numpy as np
 from keras.models import load_model
+from joblib import Parallel, delayed
 from bluvisionmicro.hyphae_pipeline import HyphaePipeline
 from bluvisionmicro.results_pipeline import ResultsPipeline
 
@@ -59,15 +61,27 @@ for experiment in experiments:
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
     for hai in hais:
-        if hai.find('hai') != -1:
+        if hai.find('hai') != -1 and not hai.endswith('.txt'):
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
-            images = os.listdir(os.path.join(source_path, experiment, hai))[1:2]
+            images = os.listdir(os.path.join(source_path, experiment, hai))
+            data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
+            if len(data) > 10:
+                image_sub_lst = np.array_split(data, len(data) / 6)
+            else:
+                image_sub_lst = np.array_split(data, 1)
+
             if mode == "analysis":
-                for slide_name in images:
-                    args = [slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity]
-                    segmenter_class().start_pipeline(args)
+                print(mode)
+                # Single
+                #for slide_name in images:
+                    #args = [slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity]
+                    #segmenter_class().start_pipeline(args)
+                # Mulit
+                for sub_lst in image_sub_lst:
+                    Parallel(n_jobs=30)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+
             # Result mode after cleaning false positives
             elif mode == "results":
                 print (mode)

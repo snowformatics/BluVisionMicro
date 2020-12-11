@@ -80,7 +80,7 @@ class HyphaePipeline(object):
 
             # Roi path
             roi_path = os.path.join(self.destination_path, self.experiment, self.hai, self.slide_name, str(self.region))
-
+            print (roi_path)
             # We create the destination paths
             bluvisionmicro.io.create_folders(roi_path)
 
@@ -98,7 +98,7 @@ class HyphaePipeline(object):
 
             # We classify the objects with a CNN model
             self.predict_hyphae(roi_path)
-            imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
+            #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
 
             # l = []
             # import cv2
@@ -108,7 +108,7 @@ class HyphaePipeline(object):
             #     #if area > 5000 and area < 50000:
             #     l.append([x, y, width, height])
             #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, l)
-            bluvisionmicro.io.save_image('canny' + self.slide_name + str(self.region) + '.png', imgage_rectangles)
+            #bluvisionmicro.io.save_image('canny' + self.slide_name + str(self.region) + '.png', imgage_rectangles)
             #bluvisionmicro.io.save_image('binary' + self.slide_name + str(self.region) + '.png', self.binary_image)
 
             #self.remove_overlapping_contours()
