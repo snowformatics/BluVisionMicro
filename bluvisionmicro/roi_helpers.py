@@ -4,16 +4,14 @@ import numpy as np
 
 
 def get_hyphae_area(destination_path):
-    print (destination_path)
     hyphae_area_lst = []
     for subdir, dirs, files in os.walk(destination_path):
         if subdir.endswith('0') or subdir.endswith('1'):
             # We need also zero colonies report in result file
             if len(files) == 0:
-
                 file_name = subdir.split('\\')
-                slide_name = file_name[5]
-                region = file_name[6]
+                slide_name = file_name[6]
+                region = file_name[7]
                 hyphae_area_lst.append([slide_name, region, None, None])
             else:
                 for file in files:
@@ -21,8 +19,8 @@ def get_hyphae_area(destination_path):
                         file_name = os.path.join(subdir, file).split('\\')
                         slide_name = file_name[-3]
                         region = file_name[-2]
-                        area = file_name[-1].split('_')[1]
-                        prediction = file_name[-1].split('_')[0]
+                        area = file_name[-1].split('_')[0]
+                        prediction = file_name[-1].split('_')[1]
                         hyphae_area_lst.append([slide_name, region, area, prediction])
     return hyphae_area_lst
 

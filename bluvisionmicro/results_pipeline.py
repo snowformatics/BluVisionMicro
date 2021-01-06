@@ -60,7 +60,7 @@ class ResultsPipeline(object):
         # Write leaf area, hyphae area and average hyphae area to CSV file
 
         result_lst = [[self.slide_area_all, 'test.csv', ['Slide_name', 'Region', 'Leaf_area']],
-                      [self.hyphae_area_lst, 'test2.csv', ['Slide_name', 'Region', 'Prediction%', 'Leaf_area']],
+                      [self.hyphae_area_lst, 'test2.csv', ['Slide_name', 'Region', 'size', 'Prediction']],
                       [self.hyphae_area_avg_lst, 'test3.csv', ["slide_name", "Slide_region", "mean_area", "std_area", "nr_of_colonies"]]]
         for result in result_lst:
             self.write_data_csv(result[0], result[1], result[2])
