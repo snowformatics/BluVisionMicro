@@ -29,7 +29,7 @@ def calculate_avg_hyphae_area(data_lst):
     """Calculate the mean and std for hyphae per slide."""
     data = pd.DataFrame(data_lst, columns=['Slide_name', 'Region', 'Prediction%', 'Leaf_area'])
     data["Leaf_area"] = pd.to_numeric(data["Leaf_area"])
-    hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'std', 'count']})
+    hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'median', 'std', 'count']})
     hyphae_area_avg.columns = hyphae_area_avg.columns.droplevel()
     hyphae_area_avg_round = hyphae_area_avg.round(decimals=1)
     return hyphae_area_avg_round

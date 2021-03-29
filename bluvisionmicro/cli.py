@@ -33,6 +33,7 @@ args = parser.parse_args()
 
 # Source path with experiments
 source_path = args.source_path
+
 # Path to store the results
 destination_path = args.destination_path
 # Load pathogen mode
@@ -43,6 +44,7 @@ mode = args.mode
 sensitivity = args.sensitivity
 # List of experiments
 experiments = os.listdir(source_path)
+print (source_path, experiments)
 # Load CNN Model for prediction
 cnn_model = load_model('09112020_1.h5')
 #cnn_model = None
@@ -61,11 +63,13 @@ for experiment in experiments:
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
     for hai in hais:
+
         if hai.find('hai') != -1 and not hai.endswith('.txt'):
+
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
-            images = os.listdir(os.path.join(source_path, experiment, hai))[5:]
+            images = os.listdir(os.path.join(source_path, experiment, hai))
             data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
             if len(data) > 10:
                 image_sub_lst = np.array_split(data, len(data) / 6)
