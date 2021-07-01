@@ -27,7 +27,7 @@ def get_hyphae_area(destination_path):
 
 def calculate_avg_hyphae_area(data_lst):
     """Calculate the mean and std for hyphae per slide."""
-    data = pd.DataFrame(data_lst, columns=['Slide_name', 'Region', 'Prediction%', 'Leaf_area'])
+    data = pd.DataFrame(data_lst, columns=['Slide_name', 'Region', 'Leaf_area', 'Prediction%'])
     data["Leaf_area"] = pd.to_numeric(data["Leaf_area"])
     hyphae_area_avg = data.groupby(['Slide_name', 'Region'], as_index=False).agg({'Leaf_area': ['mean', 'median', 'std', 'count']})
     hyphae_area_avg.columns = hyphae_area_avg.columns.droplevel()

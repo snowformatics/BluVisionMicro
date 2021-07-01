@@ -48,6 +48,7 @@ def filter_contours(all_rois, image):
     max_aspect_ratio = 10.0
     min_aspect_ratio = 0.5
     max_len_cnt = 50000
+    #max_len_cnt = 50000
     min_len_cnt = 150
 
     for cnt in all_rois:
@@ -55,15 +56,15 @@ def filter_contours(all_rois, image):
         # We apply a very simple rough filter with geometrical parameters, to exclude very large or small objects
         # if cv2.contourArea(cnt) > 5000:
         #     #i = image[x:x+height, y:y+width]
-        #     i = image[y:y + width, x:x + height]
-        #     cv2.imwrite(str(x) + str(y) + str(width) + str(height) + '.png', i)
-
-            #cv2.imshow('', i)
-            #cv2.waitKey(0)
+        #i = image[y:y + width, x:x + height]
+        #cv2.imwrite(str(x) + str(y) + str(width) + str(height) + '.png', i)
+        #i = image[y:y + width, x:x + height]
+        #cv2.imshow('', i)
+        #cv2.waitKey(0)
         if len(cnt) > min_len_cnt and len(cnt) < max_len_cnt:
             if width < max_hyphae_width and height < max_hyphae_height:
                 if float(width / height) < max_aspect_ratio or float(width / height) > min_aspect_ratio:
                     area = cv2.contourArea(cnt)
                     contours_filtered.append((y, y + height, x, x + width, area))
-
+                    #cv2.imwrite(str(x) + str(y) + str(width) + str(height)  + '.png', i)
     return contours_filtered

@@ -58,10 +58,11 @@ if not segmenter_class:
 print (segmenter_class)
 # Image analysis mode
 
-for experiment in experiments:
+for experiment in experiments[0:2]:
     # Experiments can have several pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
+    print (experiment, hais)
     for hai in hais:
 
         if hai.find('hai') != -1 and not hai.endswith('.txt'):
@@ -70,6 +71,7 @@ for experiment in experiments:
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
             images = os.listdir(os.path.join(source_path, experiment, hai))
+            print (images)
             data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
             if len(data) > 10:
                 image_sub_lst = np.array_split(data, len(data) / 6)
@@ -79,12 +81,14 @@ for experiment in experiments:
             if mode == "analysis":
                 print(mode)
                 # Single
-                #for slide_name in images:
-                    #args = [slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity]
-                    #segmenter_class().start_pipeline(args)
+                # for sub_lst in image_sub_lst:
+                #     for i in sub_lst:
+                #         print (i)
+                #         segmenter_class().start_pipeline(i)
                 # Mulit
                 for sub_lst in image_sub_lst:
-                    Parallel(n_jobs=30)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+                    print (sub_lst)
+                    Parallel(n_jobs=12)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
 
             # Result mode after cleaning false positives
             elif mode == "results":

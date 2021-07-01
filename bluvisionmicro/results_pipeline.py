@@ -61,16 +61,16 @@ class ResultsPipeline(object):
 
         result_lst = [[self.slide_area_all,
                        os.path.join(self.destination_path,self.experiment, self.hai, self.experiment + "_leaf_area.csv"),
-                       ['Slide_name', 'Slide_region', 'Leaf_area']],
+                       ['Slide_ID', 'Slide_region', 'Leaf_area']],
 
                       [self.hyphae_area_lst,
                        os.path.join(self.destination_path, self.experiment, self.hai, self.experiment + "_colony_area.csv"),
-                       ['Slide_name', 'Slide_region', 'Prediction', 'Colony_area']],
+                       ['Slide_ID', 'Slide_region', 'Colony_area', 'Prediction']],
 
                       [self.hyphae_area_avg_lst,
                        os.path.join(self.destination_path, self.experiment, self.hai,
                                     self.experiment + "_colony_mean_area.csv"),
-                       ["Slide_name", "Slide_region", "Colony_mean_area", "Colony_median_area", "Colony_std_area", "Nr_of_colonies"]]]
+                       ["Slide_ID", "Slide_region", "Colony_mean_area", "Colony_median_area", "Colony_std_area", "Nr_of_colonies"]]]
 
         for result in result_lst:
             self.write_data_csv(result[0], result[1], result[2])
