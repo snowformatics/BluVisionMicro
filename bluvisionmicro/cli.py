@@ -88,7 +88,7 @@ for experiment in experiments[0:2]:
                 # Mulit
                 for sub_lst in image_sub_lst:
                     print (sub_lst)
-                    Parallel(n_jobs=12)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+                    Parallel(n_jobs=8)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
 
             # Result mode after cleaning false positives
             elif mode == "results":

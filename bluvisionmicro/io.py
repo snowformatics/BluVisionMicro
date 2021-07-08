@@ -19,11 +19,14 @@ def draw_rectangle_on_image(image, lst_of_rois):
     return imgage_rectangles
 
 
-def write_csv(data_lst, file_name, header):
-    if isinstance(data_lst, list):
-        df = pd.DataFrame(data_lst, columns=header)
+def write_csv(data, file_name, header):
+
+    if isinstance(data, list):
+        df = pd.DataFrame(data, columns=header)
+    elif isinstance(data, pd.DataFrame):
+        df = data
     else:
-        df = data_lst
+        df = data
         df.columns = header
     df.to_csv(file_name, index=False, sep=';')
 
