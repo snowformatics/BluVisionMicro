@@ -14,3 +14,13 @@ Figure 2:  BluVision Micro Module
 
 <img src="https://github.com/snowformatics/GSOC/blob/master/Slide2.PNG" width="70%" height="70%"><br>
 Figure 3: Blumeria graminis hyphae detetcion
+
+## Installation
+
+We recoommend to install the software via Ananconda:
+
+1.) Create new enviroment with Python 3.6
+conda create -n bluvision_micro python=3.6
+
+2.) Install dependencies:
+
