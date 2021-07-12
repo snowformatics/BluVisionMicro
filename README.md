@@ -49,8 +49,25 @@ pip to install joblib
 
 git clone https://github.com/snowformatics/BluVisionMicro.git
 
-## Run
+## Run Analysis
 -> Inside BluVisionMicro folder
+
 python cli.py -s source_path -d destination_path -p mildew -m analysis -se 0.05
+
+## Run Analysis
+
+python cli.py -s source_path -d destination_path -p mildew -m results
+
+## Parameters
+
+-s -> path to source CZI images
+
+-d -> path to store the results
+
+-p -> pathogen, currently only mildew available 
+
+-m -> mode (analysis or results)
+
+-se -> Sensitivity for the CNN to predict hyphae. We reccomment using strict values for host interactions (se = 0.0) and releaxed values for nonhost interactions (0.05). 
 
 
