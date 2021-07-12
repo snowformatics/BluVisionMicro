@@ -7,7 +7,7 @@ BluVision is a software and hardware framework for high-throughput image acquisi
 <img src="https://github.com/snowformatics/GSOC/blob/master/Bild9.png" width="70%" height="70%"><br>
 Figure 1: Zeiss Axio Scan.Z1
 
-Our image analysis pipeline is aimed to detect and analyze microscopic infection events (Figure 6).
+Our image analysis pipeline is aimed to detect and analyze microscopic infection events (Figure 2 & 3).
 
 <img src="https://github.com/snowformatics/GSOC/blob/master/Slide3.PNG" width="70%" height="70%"><br>
 Figure 2:  BluVision Micro Module
