@@ -45,4 +45,12 @@ pip install scikit-learn
 
 pip to install joblib
 
+3.) Clone Github repository
+
+git clone https://github.com/snowformatics/BluVisionMicro.git
+
+## Run
+-> Inside BluVisionMicro folder
+python cli.py -s source_path -d destination_path -p mildew -m analysis -se 0.05
+
 
