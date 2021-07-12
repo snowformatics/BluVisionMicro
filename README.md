@@ -26,14 +26,23 @@ conda create -n bluvision_micro python=3.6
 2.) Install dependencies:
 
 pip install numpy
+
 pip install pandas
+
 pip install czifile
+
 pip install mahotas
+
 pip install -U scikit-image
+
 pip install tensorflow
+
 pip install keras
+
 pip install opencv-contrib-python
+
 pip install scikit-learn
+
 pip to install joblib
 
 
