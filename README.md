@@ -9,8 +9,8 @@ Figure 1: Zeiss Axio Scan.Z1
 
 Our image analysis pipeline is aimed to detect and analyze microscopic infection events (Figure 6).
 
-<img src="https://github.com/snowformatics/GSOC/blob/master/Slide3.png" width="70%" height="70%"><br>
+<img src="https://github.com/snowformatics/GSOC/blob/master/Slide3.PNG" width="70%" height="70%"><br>
 Figure 2:  BluVision Micro Module
 
-<img src="https://github.com/snowformatics/GSOC/blob/master/Slide2.png" width="70%" height="70%"><br>
+<img src="https://github.com/snowformatics/GSOC/blob/master/Slide2.PNG" width="70%" height="70%"><br>
 Figure 3: Blumeria graminis hyphae detetcion
