@@ -54,7 +54,7 @@ git clone https://github.com/snowformatics/BluVisionMicro.git
 
 python cli.py -s source_path -d destination_path -p mildew -m analysis -se 0.05
 
-## Run Analysis
+## Run Results
 
 python cli.py -s source_path -d destination_path -p mildew -m results
 
