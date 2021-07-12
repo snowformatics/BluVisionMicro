@@ -25,25 +25,16 @@ conda create -n bluvision_micro python=3.6
 
 2.) Install dependencies:
 
-pip install numpy
-
-pip install pandas
-
-pip install czifile
-
-pip install mahotas
-
-pip install -U scikit-image
-
-pip install tensorflow
-
-pip install keras
-
-pip install opencv-contrib-python
-
-pip install scikit-learn
-
-pip to install joblib
+pip install numpy<br>
+pip install pandas<br>
+pip install czifile<br>
+pip install mahotas<br>
+pip install -U scikit-image<br>
+pip install tensorflow<br>
+pip install keras<br>
+pip install opencv-contrib-python<br>
+pip install scikit-learn<br>
+pip to install joblib<br>
 
 3.) Clone Github repository
 
@@ -60,14 +51,10 @@ python cli.py -s source_path -d destination_path -p mildew -m results
 
 ## Parameters
 
--s -> path to source CZI images
-
--d -> path to store the results
-
--p -> pathogen, currently only mildew available 
-
--m -> mode (analysis or results)
-
--se -> Sensitivity for the CNN to predict hyphae. We reccomment using strict values for host interactions (se = 0.0) and releaxed values for nonhost interactions (0.05). 
+-s -> path to source CZI images<br>
+-d -> path to store the results<br>
+-p -> pathogen, currently only mildew available <br>
+-m -> mode (analysis or results)<br>
+-se -> Sensitivity for the CNN to predict hyphae. We reccomment using strict values for host interactions (se = 0.0) and releaxed values for nonhost interactions (0.05). <br>
 
 
