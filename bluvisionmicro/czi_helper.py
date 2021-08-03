@@ -43,13 +43,18 @@ def get_leaf_area(slide_name, czi_xml):
     leaf_area_lst = []
     for region in range(len(tile_region)):
         scan_region = tile_region.item(region).getElementsByTagName('Points')
-        polygon = scan_region[0].firstChild.data
-        polygon = polygon.split(' ')
-        polygon_as_tuple = []
-        for points in polygon:
-            polygon_as_tuple.append((float(points.split(',')[0]), float(points.split(',')[1])))
-        leaf_area = calculate_area_polygon(polygon_as_tuple)
-        leaf_area_lst.append([slide_name, region, round(leaf_area, 0)])
+
+        try:
+            polygon = scan_region[0].firstChild.data
+            polygon = polygon.split(' ')
+            polygon_as_tuple = []
+            for points in polygon:
+                polygon_as_tuple.append((float(points.split(',')[0]), float(points.split(',')[1])))
+            leaf_area = calculate_area_polygon(polygon_as_tuple)
+            leaf_area_lst.append([slide_name, region, round(leaf_area, 0)])
+        except IndexError:
+            # Sometimes we can not extract a polygon from the czi file, we set leaf area to NaN
+            leaf_area_lst.append([slide_name, region, 'NaN'])
     return leaf_area_lst
 
 

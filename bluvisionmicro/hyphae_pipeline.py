@@ -89,9 +89,11 @@ class HyphaePipeline(object):
             # We create a stacked image from the z-stack
             self.stack_images()
 
+
+
             # We create a binary image
             self.create_binary_image()
-
+            #bluvisionmicro.io.save_image('bin' + self.slide_name + str(self.region) + '.png', self.binary_image)
             # We extract all contours objects as possible ROIs
             self.extract_contours()
 
@@ -103,7 +105,7 @@ class HyphaePipeline(object):
             #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
 
             # l = []
-            import cv2
+            #import cv2
             # for i in self.positive_roi_lst:
             #
             #
@@ -125,7 +127,6 @@ class HyphaePipeline(object):
                 #if len(i) > 150 and len(i) < 50000:
             #         #l.append([x, y, width, height])
             #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, l)
-            #bluvisionmicro.io.save_image('cnt' + self.slide_name + str(self.region) + '.png', imgage_rectangles)
             #bluvisionmicro.io.save_image('binary' + self.slide_name + str(self.region) + '.png', self.binary_image)
 
             #self.remove_overlapping_contours()

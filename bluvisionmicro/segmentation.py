@@ -43,13 +43,23 @@ def filter_contours(all_rois, image):
     # We store the contours which pass all criteria
     contours_filtered = []
     # Some fixed parameters
-    max_hyphae_height = 800
-    max_hyphae_width = 1400
+    ### 48h
+    #max_hyphae_height = 800
+    #max_hyphae_width = 1400
+    # max_len_cnt = 50000
+    # min_len_cnt = 150
+
+    ### 96h
+    max_hyphae_height = 1500
+    max_hyphae_width = 2500
+    max_len_cnt = 500000
+    min_len_cnt = 500
+
+
     max_aspect_ratio = 10.0
     min_aspect_ratio = 0.5
-    max_len_cnt = 50000
-    #max_len_cnt = 50000
-    min_len_cnt = 150
+
+
 
     for cnt in all_rois:
         x, y, width, height = cv2.boundingRect(cnt)

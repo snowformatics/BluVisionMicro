@@ -47,6 +47,8 @@ experiments = os.listdir(source_path)
 print (source_path, experiments)
 # Load CNN Model for prediction
 cnn_model = load_model('09112020_1.h5')
+#cnn_model = load_model('C:/Users/lueck/PycharmProjects/cnn_tuner/best.h5')
+
 #cnn_model = None
 
 # Connect segmenter class to the pathogen argument
@@ -58,7 +60,7 @@ if not segmenter_class:
 print (segmenter_class)
 # Image analysis mode
 
-for experiment in experiments[0:2]:
+for experiment in experiments:
     # Experiments can have several pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
@@ -77,7 +79,7 @@ for experiment in experiments[0:2]:
                 image_sub_lst = np.array_split(data, len(data) / 6)
             else:
                 image_sub_lst = np.array_split(data, 1)
-
+            print (len(image_sub_lst))
             if mode == "analysis":
                 print(mode)
                 # Single

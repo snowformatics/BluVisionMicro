@@ -48,7 +48,11 @@ class ResultsPipeline(object):
         data2.columns = header2
         data2["Slide_region"] = pd.to_numeric(data2["Slide_region"])
         df = pd.merge(df1, data2,  how='left', on=['Slide_ID', 'Slide_region'])
+
+        # Important: In case leaf area is NaN, we impute the NaN values with mean
+        df['Leaf_area'] = df['Leaf_area'].astype(float).fillna(df['Leaf_area'].astype(float).mean(skipna=True))
         df['Normalized_colonies'] = df['Nr_of_colonies'] / df['Leaf_area']*100000000
+
         return df
 
 
