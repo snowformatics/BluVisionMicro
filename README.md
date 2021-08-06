@@ -41,9 +41,12 @@ pip to install joblib<br>
 git clone https://github.com/snowformatics/BluVisionMicro.git
 
 ## Run Analysis
--> Inside BluVisionMicro folder
+-> Inside BluVisionMicro folder<br>
+For small colonies (< 50hai):<br>
+python cli.py -s source_path -d destination_path -p mildew_small -m analysis -se 0.05
 
-python cli.py -s source_path -d destination_path -p mildew -m analysis -se 0.05
+For large colonies (> 50hai):<br>
+python cli.py -s source_path -d destination_path -p mildew_large -m analysis -se 0.05
 
 ## Run Results
 

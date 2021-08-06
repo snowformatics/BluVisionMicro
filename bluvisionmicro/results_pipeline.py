@@ -36,10 +36,8 @@ class ResultsPipeline(object):
             bluvisionmicro.czi_helper.get_label((os.path.join(self.source_path, self.experiment,self.hai)), None,
                                                 slide_name)
 
-
     def write_data_csv(self, data, file_name, header):
         bluvisionmicro.io.write_csv(data, file_name, header)
-
 
     def merge(self, data1, header1, data2, header2):
         # Merge mean colony with leaf area to normalize
@@ -52,9 +50,7 @@ class ResultsPipeline(object):
         # Important: In case leaf area is NaN, we impute the NaN values with mean
         df['Leaf_area'] = df['Leaf_area'].astype(float).fillna(df['Leaf_area'].astype(float).mean(skipna=True))
         df['Normalized_colonies'] = df['Nr_of_colonies'] / df['Leaf_area']*100000000
-
         return df
-
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
@@ -95,7 +91,6 @@ class ResultsPipeline(object):
                       [df_merged,
                       os.path.join(self.destination_path, self.experiment, self.hai,
                                    self.experiment + "_colony_mean_area_normalized.csv"), None ]]
-
 
         for result in result_lst:
             self.write_data_csv(result[0], result[1], result[2])
