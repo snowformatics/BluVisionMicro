@@ -3,7 +3,7 @@ import os
 import numpy as np
 from keras.models import load_model
 from joblib import Parallel, delayed
-from bluvisionmicro.hyphae_pipeline import HyphaePipeline
+from bluvisionmicro.powdery_mildew import MildewClassificationSmall, MildewClassificationLarge
 from bluvisionmicro.results_pipeline import ResultsPipeline
 
 import bluvisionmicro.io
@@ -19,8 +19,6 @@ parser.add_argument('-m', '--mode', required=True,
                     help='Software mode.')
 parser.add_argument('-se', '--sensitivity', required=False,
                     help='sensitivity to predict hyphae objects.')
-
-
 
 
 # We get all the arguments from the user input
@@ -47,14 +45,13 @@ experiments = os.listdir(source_path)
 print (source_path, experiments)
 # Load CNN Model for prediction
 cnn_model = load_model('09112020_1.h5')
-#cnn_model = load_model('C:/Users/lueck/PycharmProjects/cnn_tuner/best.h5')
 
-#cnn_model = None
 
 # Connect segmenter class to the pathogen argument
 segmenter_class = {
-    'mildew': HyphaePipeline
-}.get(pathogen)
+    'mildew_small': MildewClassificationSmall,
+    'mildew_large': MildewClassificationLarge}.get(pathogen)
+
 if not segmenter_class:
     raise argparse.ArgumentError("Invalid segmentation method '{}'".format(pathogen))
 print (segmenter_class)
@@ -73,15 +70,12 @@ for experiment in experiments:
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
             images = os.listdir(os.path.join(source_path, experiment, hai))
-            print (images)
             data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
             if len(data) > 10:
                 image_sub_lst = np.array_split(data, len(data) / 6)
             else:
                 image_sub_lst = np.array_split(data, 1)
-            print (len(image_sub_lst))
             if mode == "analysis":
-                print(mode)
                 # Single
                 # for sub_lst in image_sub_lst:
                 #     for i in sub_lst:

@@ -18,10 +18,6 @@ def threshold_image(image_stacked):
     binary_image = threshold_yen(q2_channel[q2_channel != 255])
     binary_image = q2_channel < binary_image
     binary_image = img_as_uint(binary_image)
-
-    #kernel = np.ones((10, 10), np.uint8)
-    #binary_image = cv2.erode(binary_image, kernel, iterations=1)
-
     return binary_image
 
 
@@ -30,7 +26,7 @@ def get_all_contours(binary_image):
     return contours
 
 
-def filter_contours(all_rois, image):
+def filter_contours(all_rois, image, max_hyphae_height, max_hyphae_width, max_len_cnt, min_len_cnt, extent=None):
     """Filter the contours by low level features like size and ration. Optimized for hyphea.
         Args:
           contours : The contours of the binary image_name.
@@ -50,31 +46,28 @@ def filter_contours(all_rois, image):
     # min_len_cnt = 150
 
     ### 96h
-    max_hyphae_height = 1500
-    max_hyphae_width = 2500
-    max_len_cnt = 500000
-    min_len_cnt = 500
-
+    #max_hyphae_height = 1500
+    #max_hyphae_width = 2500
+    #max_len_cnt = 500000
+    #min_len_cnt = 500
 
     max_aspect_ratio = 10.0
     min_aspect_ratio = 0.5
 
-
-
     for cnt in all_rois:
         x, y, width, height = cv2.boundingRect(cnt)
         # We apply a very simple rough filter with geometrical parameters, to exclude very large or small objects
-        # if cv2.contourArea(cnt) > 5000:
-        #     #i = image[x:x+height, y:y+width]
         #i = image[y:y + width, x:x + height]
-        #cv2.imwrite(str(x) + str(y) + str(width) + str(height) + '.png', i)
-        #i = image[y:y + width, x:x + height]
-        #cv2.imshow('', i)
-        #cv2.waitKey(0)
+
         if len(cnt) > min_len_cnt and len(cnt) < max_len_cnt:
             if width < max_hyphae_width and height < max_hyphae_height:
                 if float(width / height) < max_aspect_ratio or float(width / height) > min_aspect_ratio:
                     area = cv2.contourArea(cnt)
-                    contours_filtered.append((y, y + height, x, x + width, area))
-                    #cv2.imwrite(str(x) + str(y) + str(width) + str(height)  + '.png', i)
+                    if extent:
+                        rect_area = width * height
+                        extent_value = float(cv2.contourArea(cnt)) / rect_area
+                        if extent_value <= extent and area > 5000:
+                            contours_filtered.append((y, y + height, x, x + width, area))
+                    else:
+                        contours_filtered.append((y, y + height, x, x + width, area))
     return contours_filtered

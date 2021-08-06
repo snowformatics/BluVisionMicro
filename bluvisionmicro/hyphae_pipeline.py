@@ -45,11 +45,9 @@ class HyphaePipeline(object):
 
     def extract_contours(self):
         self.all_contour_objects = bluvisionmicro.segmentation.get_all_contours(self.binary_image)
-        #print (len(self.all_contour_objects))
 
     def filter_contours(self):
-        self.filtered_contour_objects = bluvisionmicro.segmentation.filter_contours(self.all_contour_objects, self.stacked_image)
-        #print(len(self.filtered_contour_objects))
+        pass
 
     def remove_overlapping_contours(self):
         self.filtered_contour_objects2 = bluvisionmicro.roi_helpers.combine_boxes(self.filtered_contour_objects)
@@ -79,21 +77,15 @@ class HyphaePipeline(object):
 
         # We loop over all regions on the CZI image
         for self.region in range(self.regions):
-
             # Roi path
             roi_path = os.path.join(self.destination_path, self.experiment, self.hai, self.slide_name, str(self.region))
-            #print (roi_path)
             # We create the destination paths
             bluvisionmicro.io.create_folders(roi_path)
-
             # We create a stacked image from the z-stack
             self.stack_images()
-
-
-
             # We create a binary image
             self.create_binary_image()
-            #bluvisionmicro.io.save_image('bin' + self.slide_name + str(self.region) + '.png', self.binary_image)
+
             # We extract all contours objects as possible ROIs
             self.extract_contours()
 
@@ -103,36 +95,4 @@ class HyphaePipeline(object):
             # We classify the objects with a CNN model
             self.predict_hyphae(roi_path)
             #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
-
-            # l = []
-            #import cv2
-            # for i in self.positive_roi_lst:
-            #
-            #
-            #     if cv2.contourArea(i) > 1500 and cv2.contourArea(i) < 20000:
-            #         x, y, w, h = cv2.boundingRect(i)
-            #         cv2.drawContours(self.stacked_image, [i], 0, (0,0,255), 2)
-            #         cv2.rectangle(self.stacked_image, (x, y), (x + w, y + h), (0, 255, 0), 3)
-            # for p in self.positive_roi_lst:
-            #     #print (p)
-            #     y = p[1]
-            #     x = p[0]
-            #     w= p[2] - p[0]
-            #     h = p[3] - p[1]
-            #
-            #     #print (p, x, y, w, h)
-            #     #cv2.rectangle(self.stacked_image, (x, y), (xw, yh), (0, 255, 0), 3)
-            #     cv2.rectangle(self.stacked_image, (x, y), (x + w, y + h), (0, 0, 255), 3)
-            # cv2.imwrite('cnt' + self.slide_name + str(self.region) + '.png', self.stacked_image)
-                #if len(i) > 150 and len(i) < 50000:
-            #         #l.append([x, y, width, height])
-            #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, l)
-            #bluvisionmicro.io.save_image('binary' + self.slide_name + str(self.region) + '.png', self.binary_image)
-
-            #self.remove_overlapping_contours()
-
-            #print (len(self.filtered_contour_objects), len(self.filtered_contour_objects2))
-
-
-
-
+            # bluvisionmicro.io.save_image('bin' + self.slide_name + str(self.region) + '.png', self.binary_image)

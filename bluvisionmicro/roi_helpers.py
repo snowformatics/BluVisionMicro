@@ -60,12 +60,3 @@ def combine_boxes(boxes):
         else:
             new_array.append(boxa)
     return np.array(new_array).astype('int')
-
-
-# boxes = [[55, 67, 10, 10], [54, 66, 198, 114],
-#         [49, 75, 203, 125], [42, 78, 186, 126],
-#          [31, 69, 201, 125], [18, 63, 235, 135],
-#          [50, 72, 197, 121], [54, 72, 198, 120],
-#          [38, 65, 10, 10], [36, 60, 180, 108]]
-
-#print (len(combine_boxes(boxes)))
