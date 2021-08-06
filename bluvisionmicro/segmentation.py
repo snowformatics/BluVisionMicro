@@ -66,7 +66,7 @@ def filter_contours(all_rois, image, max_hyphae_height, max_hyphae_width, max_le
                     if extent:
                         rect_area = width * height
                         extent_value = float(cv2.contourArea(cnt)) / rect_area
-                        if extent_value <= extent and area > 5000:
+                        if extent_value <= extent and area > 3500:
                             contours_filtered.append((y, y + height, x, x + width, area))
                     else:
                         contours_filtered.append((y, y + height, x, x + width, area))

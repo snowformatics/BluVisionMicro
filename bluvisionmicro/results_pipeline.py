@@ -19,10 +19,11 @@ class ResultsPipeline(object):
     def get_leaf_area(self, slides):
         self.slide_area_all = []
         for slide_name in slides:
-            leaf_area = bluvisionmicro.czi_helper.get_polygon((os.path.join(self.source_path, self.experiment,
-                                                                                     self.hai)), slide_name)
-            for l in leaf_area:
-                self.slide_area_all.append(l)
+            if slide_name.endswith('.czi'):
+                leaf_area = bluvisionmicro.czi_helper.get_polygon((os.path.join(self.source_path, self.experiment,
+                                                                                         self.hai)), slide_name)
+                for l in leaf_area:
+                    self.slide_area_all.append(l)
 
     def get_hyphae_area(self):
         self.hyphae_area_lst = bluvisionmicro.roi_helpers.get_hyphae_area(os.path.join(self.destination_path,
