@@ -58,14 +58,14 @@ print (segmenter_class)
 # Image analysis mode
 
 for experiment in experiments:
-    # Experiments can have several pathogen inoculation time points
+    # Experiments can have sev.eral pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
     print (experiment, hais)
     for hai in hais:
 
         if hai.find('hai') != -1 and not hai.endswith('.txt'):
-
+            print (hai)
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point

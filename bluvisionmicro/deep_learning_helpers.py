@@ -3,7 +3,8 @@ import cv2
 import os
 from keras.preprocessing import image
 import bluvisionmicro.io
-
+from keras.models import load_model
+import visualkeras
 
 def classify_object(filtered_contour_objects, stacked_image, cnn_model, destination_path, slide_name, sensitivity):
     # y, y + height, x, x + width, area
@@ -140,3 +141,28 @@ def train_cnn():
     plt.legend()
     plt.savefig('10112020.png')
     model.save('10112020_1.h5')
+
+
+def convert_model():
+    import tensorflow as tf
+    model = tf.keras.models.load_model("09112020_1.h5")
+    tf.saved_model.save(model, 'out')
+
+
+def viz_model():
+
+
+    model = load_model('09112020_1.h5')
+    #visualkeras.layered_view(model, legend=True, to_file='output.png').show()
+    from tensorflow.keras.utils import plot_model
+    plot_model(model, to_file='model.png', show_layer_names=True, show_shapes=True)
+
+def heatmap():
+    model = load_model('09112020_1.h5')
+    layer_names = [layer.name for layer in model.layers]
+    print(layer_names)
+
+
+#convert_model()
+#viz_model()
+heatmap()
