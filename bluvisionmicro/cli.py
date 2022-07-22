@@ -73,6 +73,7 @@ for experiment in experiments:
             data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
             if len(data) > 10:
                 image_sub_lst = np.array_split(data, len(data) / 6)
+
             else:
                 image_sub_lst = np.array_split(data, 1)
             if mode == "analysis":
@@ -82,9 +83,10 @@ for experiment in experiments:
                 #         print (i)
                 #         segmenter_class().start_pipeline(i)
                 # Mulit
+                #print(len(image_sub_lst))
                 for sub_lst in image_sub_lst:
                     print (sub_lst)
-                    Parallel(n_jobs=8)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+                    Parallel(n_jobs=6)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
 
             # Result mode after cleaning false positives
             elif mode == "results":
