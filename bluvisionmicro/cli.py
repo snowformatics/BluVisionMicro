@@ -64,7 +64,7 @@ for experiment in experiments:
     print (experiment, hais)
     for hai in hais:
 
-        if hai.find('hai') != -1 and not hai.endswith('.txt'):
+        if hai.find('48hai') != -1 and not hai.endswith('.txt'):
             print (hai)
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))

@@ -10,9 +10,9 @@ import bluvisionmicro.roi_helpers
 class HyphaePipeline(object):
     """Hyphae pipeline main class.
 
-    :param slide: A list of all images names per plate (green channel, blue channel, red channel, backlight image, UVS image.
+    :param slide: A list of all images names .
     :type slide: list
-    :param path: The path which contains the raw images coming from the macrobot image acquisition.
+    :param path: The path which contains the raw images.
     :type source_path: str
     :param destination_path: The path to store the final result images and csv file.
     :type destination_path: str
