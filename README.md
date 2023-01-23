@@ -58,6 +58,6 @@ python cli.py -s source_path -d destination_path -p mildew -m results
 -d -> path to store the results<br>
 -p -> pathogen, currently only mildew available <br>
 -m -> mode (analysis or results)<br>
--se -> Sensitivity for the CNN to predict hyphae. We reccomment using strict values for host interactions (se = 0.0) and releaxed values for nonhost interactions (0.05). <br>
+-se -> Sensitivity for the CNN to predict hyphae. We recommend using strict values for host interactions (se = 0.0) and relaxed values for nonhost interactions (0.05). <br>
 
 

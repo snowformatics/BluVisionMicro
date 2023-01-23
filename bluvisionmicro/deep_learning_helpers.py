@@ -41,7 +41,6 @@ def classify_object(filtered_contour_objects, stacked_image, cnn_model, destinat
     return positive_roi_lst
 
 
-
 def train_cnn():
     import cv2
     import os
@@ -51,7 +50,7 @@ def train_cnn():
     from keras.layers import Dropout
     from keras.layers import Flatten
     from keras.constraints import maxnorm
-    from keras.optimizers import SGD
+    from keras.optimizers import SGD, Adam
     from keras.layers.convolutional import Convolution2D
     from keras.layers.convolutional import MaxPooling2D
     from keras.utils import np_utils
@@ -64,24 +63,33 @@ def train_cnn():
     labels = []
 
     # grab the image paths and randomly shuffle them
-    imagePaths = sorted(list(paths.list_images("C:/06112020_hyphae/all/")))
+    #imagePaths = sorted(list(paths.list_images("C:/06112020_hyphae/all/")))
+    # Negatives
+    imagePaths = sorted(list(paths.list_images("D:/Mikroskop/Training_data/Deep Learning/Hyphae/microcolonies_dataset/")))
+
+    print (len(imagePaths))
     random.seed(42)
     random.shuffle(imagePaths)
     # loop over the input images
     for imagePath in imagePaths:
         # load the image, resize it to 350x150 pixels, and store the image in the
         # data list
+        label = imagePath.split('\\')[-2].split('/')[-1]
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (350, 150))
         data.append(image)
-        # extract the class label from the image path and update the
-        # labels list
-        label = imagePath.split(os.path.sep)[-2].split('/')[-1]
-        if label == 'pos':
+
+        if label == 'positives':
             label = 1
-        elif label == 'neg':
+        elif label == 'negatives':
             label = 0
+
         labels.append(label)
+    print (len(data))
+
+
+
+
 
     # scale the raw pixel intensities to the range [0, 1]
     data = np.array(data, dtype="float") / 255.0
@@ -119,6 +127,8 @@ def train_cnn():
     lrate = 0.01
     decay = lrate / epochs
     sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
+    #sgd = Adam(lr=lrate)
+
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
     print(model.summary())
 
@@ -139,8 +149,8 @@ def train_cnn():
     plt.xlabel("Epoch #")
     plt.ylabel("Loss/Accuracy")
     plt.legend()
-    plt.savefig('10112020.png')
-    model.save('10112020_1.h5')
+    plt.savefig('microcolonies_dataset_adam.png')
+    model.save('microcolonies_dataset_adam.h5')
 
 
 def convert_model():
@@ -162,7 +172,7 @@ def heatmap():
     layer_names = [layer.name for layer in model.layers]
     print(layer_names)
 
-
+#train_cnn()
 #convert_model()
 #viz_model()
-heatmap()
+#heatmap()

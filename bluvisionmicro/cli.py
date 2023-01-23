@@ -64,7 +64,7 @@ for experiment in experiments:
     print (experiment, hais)
     for hai in hais:
 
-        if hai.find('48hai') != -1 and not hai.endswith('.txt'):
+        if hai.find('72hai') != -1 and not hai.endswith('.txt'):
             print (hai)
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
@@ -72,7 +72,7 @@ for experiment in experiments:
             images = os.listdir(os.path.join(source_path, experiment, hai))
             data = [(slide_name, cnn_model, source_path, destination_path, experiment, hai, sensitivity) for slide_name in images if slide_name.endswith('.czi')]
             if len(data) > 10:
-                image_sub_lst = np.array_split(data, len(data) / 6)
+                image_sub_lst = np.array_split(data, len(data) / 3)
 
             else:
                 image_sub_lst = np.array_split(data, 1)

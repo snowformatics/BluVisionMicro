@@ -94,5 +94,7 @@ class HyphaePipeline(object):
 
             # We classify the objects with a CNN model
             self.predict_hyphae(roi_path)
-            #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.filtered_contour_objects)
-            # bluvisionmicro.io.save_image('bin' + self.slide_name + str(self.region) + '.png', self.binary_image)
+
+            #imgage_rectangles = bluvisionmicro.io.draw_rectangle_on_image(self.stacked_image, self.positive_roi_lst)
+            #bluvisionmicro.io.save_image('stacked' + self.slide_name + str(self.region) + '.png', self.stacked_image)
+            #bluvisionmicro.io.save_image('stacked_bbox' + self.slide_name + str(self.region) + '.png', imgage_rectangles)
