@@ -6,6 +6,7 @@ import bluvisionmicro.io
 from keras.models import load_model
 import visualkeras
 
+
 def classify_object(filtered_contour_objects, stacked_image, cnn_model, destination_path, slide_name, sensitivity):
     # y, y + height, x, x + width, area
     positive_roi_lst = []
@@ -87,10 +88,6 @@ def train_cnn():
         labels.append(label)
     print (len(data))
 
-
-
-
-
     # scale the raw pixel intensities to the range [0, 1]
     data = np.array(data, dtype="float") / 255.0
     labels = np.array(labels)
@@ -160,8 +157,6 @@ def convert_model():
 
 
 def viz_model():
-
-
     model = load_model('09112020_1.h5')
     #visualkeras.layered_view(model, legend=True, to_file='output.png').show()
     from tensorflow.keras.utils import plot_model

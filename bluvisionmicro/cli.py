@@ -64,7 +64,7 @@ for experiment in experiments:
     print (experiment, hais)
     for hai in hais:
 
-        if hai.find('72hai') != -1 and not hai.endswith('.txt'):
+        if hai.find('hai') != -1 and not hai.endswith('.txt'):
             print (hai)
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
@@ -87,6 +87,8 @@ for experiment in experiments:
                 for sub_lst in image_sub_lst:
                     print (sub_lst)
                     Parallel(n_jobs=6)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+                args = [images, source_path, destination_path, experiment, hai]
+                bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
 
             # Result mode after cleaning false positives
             elif mode == "results":
