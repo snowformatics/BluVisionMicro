@@ -13,6 +13,8 @@ parser.add_argument('-s', '--source_path', required=True,
                     help='Directory containing images to segment.')
 parser.add_argument('-d', '--destination_path', required=True,
                     help='Directory to store the result images.')
+parser.add_argument('-e', '--exchange_path', required=False, default="D:/Mikroskop/Exchange/BluVision_results/AxioScan/",
+                    help='Directory to store the results on the exchange path.')
 parser.add_argument('-p', '--pathogen', required=True,
                     help='Pathogen')
 parser.add_argument('-m', '--mode', required=True,
@@ -34,6 +36,8 @@ source_path = args.source_path
 
 # Path to store the results
 destination_path = args.destination_path
+exchange_path = args.exchange_path
+print (exchange_path)
 # Load pathogen mode
 pathogen = args.pathogen
 # Load software mode
@@ -45,6 +49,8 @@ experiments = os.listdir(source_path)
 print (source_path, experiments)
 # Load CNN Model for prediction
 cnn_model = load_model('09112020_1.h5')
+#cnn_model = load_model('01.h5')
+
 
 
 # Connect segmenter class to the pathogen argument
@@ -87,13 +93,13 @@ for experiment in experiments:
                 for sub_lst in image_sub_lst:
                     print (sub_lst)
                     Parallel(n_jobs=6)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
-                args = [images, source_path, destination_path, experiment, hai]
+                args = [images, source_path, destination_path, experiment, hai, exchange_path]
                 bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
 
             # Result mode after cleaning false positives
             elif mode == "results":
                 print (mode)
-                args = [images, source_path, destination_path, experiment, hai]
+                args = [images, source_path, destination_path, experiment, hai, exchange_path]
                 bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
 
 

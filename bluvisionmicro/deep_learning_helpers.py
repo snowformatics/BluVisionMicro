@@ -64,7 +64,8 @@ def train_cnn():
     labels = []
 
     # grab the image paths and randomly shuffle them
-    #imagePaths = sorted(list(paths.list_images("C:/06112020_hyphae/all/")))
+    #imagePaths = sorted(list(paths.list_images("D:/Mikroskop/Training_data/Deep Learning/Hyphae/small_set/")))
+    #loss: 0.0074 - accuracy: 0.9968 - val_loss: 0.1739 - val_accuracy: 0.9771
     # Negatives
     imagePaths = sorted(list(paths.list_images("D:/Mikroskop/Training_data/Deep Learning/Hyphae/microcolonies_dataset/")))
 
@@ -106,10 +107,10 @@ def train_cnn():
     model = Sequential()
     model.add(Convolution2D(32, 3, 3, input_shape=(150, 350, 3), activation='relu', border_mode='same'))
     model.add(Dropout(0.2))
-    model.add(Convolution2D(32, 3, 3, activation='relu', border_mode='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Convolution2D(64, 3, 3, activation='relu', border_mode='same'))
-    model.add(Dropout(0.2))
+    #model.add(Convolution2D(32, 3, 3, activation='relu', border_mode='same'))
+    #model.add(MaxPooling2D(pool_size=(2, 2)))
+    #model.add(Convolution2D(64, 3, 3, activation='relu', border_mode='same'))
+    #model.add(Dropout(0.2))
     model.add(Convolution2D(64, 3, 3, activation='relu', border_mode='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Flatten())
@@ -121,7 +122,10 @@ def train_cnn():
     model.add(Dense(num_classes, activation='softmax'))
     # Compile model
     epochs = 25
+    #default!
+    #lrate = 0.01
     lrate = 0.01
+
     decay = lrate / epochs
     sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
     #sgd = Adam(lr=lrate)
@@ -142,12 +146,12 @@ def train_cnn():
     plt.plot(N, H.history["val_loss"], label="val_loss")
     plt.plot(N, H.history["accuracy"], label="train_acc")
     plt.plot(N, H.history["val_accuracy"], label="val_acc")
-    plt.title("Training Loss and Accuracy (SmallVGGNet)")
+    plt.title("Training Loss and Accuracy (10.000 images)")
     plt.xlabel("Epoch #")
     plt.ylabel("Loss/Accuracy")
     plt.legend()
-    plt.savefig('microcolonies_dataset_adam.png')
-    model.save('microcolonies_dataset_adam.h5')
+    plt.savefig('01.png')
+    model.save('01.h5')
 
 
 def convert_model():
@@ -166,6 +170,7 @@ def heatmap():
     model = load_model('09112020_1.h5')
     layer_names = [layer.name for layer in model.layers]
     print(layer_names)
+
 
 #train_cnn()
 #convert_model()

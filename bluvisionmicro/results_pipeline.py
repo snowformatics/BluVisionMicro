@@ -6,7 +6,8 @@ import bluvisionmicro.segmentation
 import bluvisionmicro.deep_learning_helpers
 import bluvisionmicro.roi_helpers
 import pandas as pd
-
+import fnmatch
+import shutil
 
 class ResultsPipeline(object):
     """
@@ -55,10 +56,11 @@ class ResultsPipeline(object):
 
     def start_pipeline(self, args):
         """Starts the Macrobot analysis pipeline."""
-        images, source_path, destination_path, experiment, hai = args
+        images, source_path, destination_path, experiment, hai, exchange_path = args
         self.slides = images
         self.source_path = source_path
         self.destination_path = destination_path
+        self.exchange_path = exchange_path
         self.experiment = experiment
         self.hai = hai
         self.czi_format = None
@@ -95,4 +97,10 @@ class ResultsPipeline(object):
 
         for result in result_lst:
             self.write_data_csv(result[0], result[1], result[2])
+
+        os.makedirs(os.path.join(self.exchange_path, self.experiment, self.hai))
+        for root, dirnames, filenames in os.walk(os.path.join(self.destination_path, self.experiment, self.hai)):
+            for filename in fnmatch.filter(filenames, '*.csv'):
+                shutil.copy(os.path.join(root, filename),os.path.join(self.exchange_path, self.experiment, self.hai))
+
 
