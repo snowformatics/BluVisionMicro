@@ -15,7 +15,7 @@ parser.add_argument('-d', '--destination_path', required=True,
                     help='Directory to store the result images.')
 parser.add_argument('-e', '--exchange_path', required=False, default="D:/Mikroskop/Exchange/BluVision_results/AxioScan/",
                     help='Directory to store the results on the exchange path.')
-parser.add_argument('-p', '--pathogen', required=True,
+parser.add_argument('-p', '--pathogen', required=False,
                     help='Pathogen')
 parser.add_argument('-m', '--mode', required=True,
                     help='Software mode.')
@@ -39,7 +39,7 @@ destination_path = args.destination_path
 exchange_path = args.exchange_path
 print (exchange_path)
 # Load pathogen mode
-pathogen = args.pathogen
+#pathogen = args.pathogen
 # Load software mode
 mode = args.mode
 # Sensitivity to predict hyphae objects.
@@ -54,13 +54,7 @@ cnn_model = load_model('09112020_1.h5')
 
 
 # Connect segmenter class to the pathogen argument
-segmenter_class = {
-    'mildew_small': MildewClassificationSmall,
-    'mildew_large': MildewClassificationLarge}.get(pathogen)
 
-if not segmenter_class:
-    raise argparse.ArgumentError("Invalid segmentation method '{}'".format(pathogen))
-print (segmenter_class)
 # Image analysis mode
 
 for experiment in experiments:
@@ -70,8 +64,22 @@ for experiment in experiments:
     print (experiment, hais)
     for hai in hais:
 
-        if hai.find('48hai') != -1 and not hai.endswith('.txt'):
-            print (hai)
+        if hai.find('hai') != -1 and not hai.endswith('.txt'):
+            if hai[0:2] == '48':
+
+                pathogen = 'mildew_small'
+            else:
+                pathogen = 'mildew_large'
+
+            segmenter_class = {
+                'mildew_small': MildewClassificationSmall,
+                'mildew_large': MildewClassificationLarge}.get(pathogen)
+
+
+            if not segmenter_class:
+                raise argparse.ArgumentError("Invalid segmentation method '{}'".format(pathogen))
+            print(experiment, hai, segmenter_class)
+
             # We create a Label folder inside the destination experiment folder where we store the CZIfile labels
             #bluvisionmicro.io.create_folders(os.path.join(destination_path, experiment, hai, 'Label'))
             # We get all CZI images inside for the particular inoculation time point
@@ -91,7 +99,7 @@ for experiment in experiments:
                 # Mulit
                 #print(len(image_sub_lst))
                 for sub_lst in image_sub_lst:
-                    print (sub_lst)
+                    #print (sub_lst)
                     Parallel(n_jobs=6)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
                 args = [images, source_path, destination_path, experiment, hai, exchange_path]
                 #bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)

@@ -26,7 +26,7 @@ class HyphaePipeline(object):
     NAME = "invalid"
 
     def __init__(self):
-        print ('start')
+        print ('')
 
     def read_images(self):
         self.image_array = bluvisionmicro.czi_helper.read_czi_image(os.path.join(self.source_path, self.experiment,
