@@ -83,6 +83,8 @@ class HyphaePipeline(object):
             bluvisionmicro.io.create_folders(roi_path)
             # We create a stacked image from the z-stack
             self.stack_images()
+            #bluvisionmicro.io.save_image('D:/Mikroskop/Images/BluVisionHyphae/stacked/' +  self.slide_name + str(self.region) + '_stack.png', self.stacked_image)
+
             # We create a binary image
             self.create_binary_image()
 

@@ -97,10 +97,13 @@ class ResultsPipeline(object):
 
         for result in result_lst:
             self.write_data_csv(result[0], result[1], result[2])
+        try:
+            os.makedirs(os.path.join(self.exchange_path, self.experiment, self.hai))
+            for root, dirnames, filenames in os.walk(os.path.join(self.destination_path, self.experiment, self.hai)):
+                for filename in fnmatch.filter(filenames, '*.csv'):
+                    shutil.copy(os.path.join(root, filename),os.path.join(self.exchange_path, self.experiment, self.hai))
+        except FileExistsError:
+            pass
 
-        os.makedirs(os.path.join(self.exchange_path, self.experiment, self.hai))
-        for root, dirnames, filenames in os.walk(os.path.join(self.destination_path, self.experiment, self.hai)):
-            for filename in fnmatch.filter(filenames, '*.csv'):
-                shutil.copy(os.path.join(root, filename),os.path.join(self.exchange_path, self.experiment, self.hai))
 
 
