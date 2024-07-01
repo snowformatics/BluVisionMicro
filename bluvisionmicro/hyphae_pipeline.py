@@ -75,6 +75,8 @@ class HyphaePipeline(object):
         # Get some meta information about the file
         self.czi_meta_info()
 
+        print (self.regions)
+
         # We loop over all regions on the CZI image
         for self.region in range(self.regions):
             # Roi path

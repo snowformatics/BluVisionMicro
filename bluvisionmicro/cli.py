@@ -39,7 +39,7 @@ destination_path = args.destination_path
 exchange_path = args.exchange_path
 print (exchange_path)
 # Load pathogen mode
-#pathogen = args.pathogen
+pathogen = args.pathogen
 # Load software mode
 mode = args.mode
 # Sensitivity to predict hyphae objects.
@@ -65,11 +65,11 @@ for experiment in experiments:
     for hai in hais:
 
         if hai.find('hai') != -1 and not hai.endswith('.txt'):
-            if hai[0:2] == '48':
-
-                pathogen = 'mildew_small'
-            else:
-                pathogen = 'mildew_large'
+            # if hai[0:2] == '48': # remove for nonhost
+            #
+            #     pathogen = 'mildew_small'
+            # else:
+            #     pathogen = 'mildew_large'
 
             segmenter_class = {
                 'mildew_small': MildewClassificationSmall,
@@ -100,7 +100,7 @@ for experiment in experiments:
                 #print(len(image_sub_lst))
                 for sub_lst in image_sub_lst:
                     #print (sub_lst)
-                    Parallel(n_jobs=6)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
+                    Parallel(n_jobs=3)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
                 args = [images, source_path, destination_path, experiment, hai, exchange_path]
                 #bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)
 

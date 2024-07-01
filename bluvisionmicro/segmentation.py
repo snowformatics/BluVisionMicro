@@ -68,7 +68,6 @@ def filter_contours(all_rois, image, max_hyphae_height, max_hyphae_width, max_le
             #cv2.drawContours(image, [cnt], 0, (0, 255, 0), 2)
                 #cv2.rectangle(image, (x, y), (x + width, y + height), (0, 0, 255), 2)
 
-
         if len(cnt) > min_len_cnt and len(cnt) < max_len_cnt:
             if width < max_hyphae_width and height < max_hyphae_height:
                 if float(width / height) < max_aspect_ratio or float(width / height) > min_aspect_ratio:

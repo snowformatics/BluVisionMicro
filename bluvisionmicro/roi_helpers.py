@@ -6,7 +6,7 @@ import numpy as np
 def get_hyphae_area(destination_path):
     hyphae_area_lst = []
     for subdir, dirs, files in os.walk(destination_path):
-        if subdir.endswith('0') or subdir.endswith('1'):
+        if subdir.endswith('0') or subdir.endswith('1') or subdir.endswith('2'):
             # We need also zero colonies report in result file
             if len(files) == 0:
                 file_name = subdir.split('\\')
