@@ -41,7 +41,7 @@ def get_leaf_area(slide_name, czi_xml):
     xmldoc = parseString(czi_xml)
     #print (xmldoc)
     tile_region= xmldoc.getElementsByTagName('TileRegion')
-    print (len(tile_region))
+    #print (len(tile_region))
     leaf_area_lst = []
     for region in range(len(tile_region)):
         scan_region = tile_region.item(region).getElementsByTagName('Points')

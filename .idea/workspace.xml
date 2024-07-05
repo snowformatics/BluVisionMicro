@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bluvisionmicro/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bluvisionmicro/czi_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/czi_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bluvisionmicro/hyphae_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/hyphae_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bluvisionmicro/powdery_mildew.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/powdery_mildew.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bluvisionmicro/roi_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/roi_helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bluvisionmicro/segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/segmentation.py" afterDir="false" />
     </list>
@@ -34,13 +34,13 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bluvisionmicro" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\lueck\PycharmProjects\BluVisionMicro\tests" />
       <recent name="C:\Users\lueck\PycharmProjects\BluVisionMicro\bluvisionmicro" />
+      <recent name="C:\Users\lueck\PycharmProjects\BluVisionMicro\tests" />
       <recent name="C:\Users\lueck\PycharmProjects\BluVisionMicro" />
       <recent name="C:\Users\stefanie\PycharmProjects\BluVisionMicro\bluvisionmicro" />
     </key>
@@ -59,6 +59,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/deep_learning_helpers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="grow_pattern" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BluVisionMicro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/grow_pattern.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -101,7 +122,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/cli.py" />
-      <option name="PARAMETERS" value="-s E:\Mikroskop2\slides2\!to_analyze\ -d D:\Mikroskop\Images\BluVisionHyphae\ -m results" />
+      <option name="PARAMETERS" value="-s E:\Mikroskop2\slides2\!to_analyze\ -d D:\Mikroskop\Images\BluVisionHyphae\ -m results -p mildew_small" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -122,7 +143,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/cli.py" />
-      <option name="PARAMETERS" value="-s E:\Mikroskop2\slides2\!to_analyze\ -d D:\Mikroskop\Images\BluVisionHyphae\ -m analysis -se 0.0" />
+      <option name="PARAMETERS" value="-s E:\Mikroskop2\slides2\!to_analyze\ -d D:\Mikroskop\Images\BluVisionHyphae\ -m analysis -se 0.0 -p mildew_small" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -172,27 +193,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="results_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="BluVisionMicro" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bluvisionmicro" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bluvisionmicro/results_pipeline.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BluVisionMicro" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -218,19 +218,19 @@
       <item itemvalue="Python.hyphae_results" />
       <item itemvalue="Python.hyphae_run" />
       <item itemvalue="Python.hyphae_run_large" />
-      <item itemvalue="Python.results_pipeline" />
       <item itemvalue="Python.deep_learning_helpers" />
-      <item itemvalue="Python.segmentation" />
+      <item itemvalue="Python.grow_pattern" />
       <item itemvalue="Python.hyphae_pipeline" />
       <item itemvalue="Python.predict" />
+      <item itemvalue="Python.segmentation" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.grow_pattern" />
         <item itemvalue="Python.deep_learning_helpers" />
         <item itemvalue="Python.predict" />
         <item itemvalue="Python.hyphae_pipeline" />
         <item itemvalue="Python.segmentation" />
-        <item itemvalue="Python.results_pipeline" />
       </list>
     </recent_temporary>
   </component>
@@ -484,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699600532664</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="add automatic hyphae size">
+      <created>1719814987957</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1719814987957</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -506,25 +513,53 @@
     <option name="LAST_COMMIT_MESSAGE" value="add automatic hyphae size" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="663" y="188" width="999" height="656" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1717069943808">
+    <state x="663" y="188" width="999" height="656" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1720157050090">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="663" y="188" width="1664" height="982" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1717069943808" />
-    <state width="2561" height="281" key="GridCell.Tab.0.bottom" timestamp="1717071220407">
+    <state x="663" y="188" width="1664" height="982" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1720157050090" />
+    <state x="800" y="184" key="CommitChangelistDialog2" timestamp="1719814987019">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2561" height="281" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1717071220407" />
-    <state width="2561" height="281" key="GridCell.Tab.0.center" timestamp="1717071220407">
+    <state x="800" y="184" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1719814987019" />
+    <state width="2561" height="414" key="GridCell.Tab.0.bottom" timestamp="1720156983741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2561" height="281" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1717071220407" />
-    <state width="2561" height="281" key="GridCell.Tab.0.left" timestamp="1717071220407">
+    <state width="2561" height="414" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1720156983741" />
+    <state width="2561" height="414" key="GridCell.Tab.0.center" timestamp="1720156983741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2561" height="281" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1717071220407" />
-    <state width="2561" height="281" key="GridCell.Tab.0.right" timestamp="1717071220407">
+    <state width="2561" height="414" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1720156983741" />
+    <state width="2561" height="414" key="GridCell.Tab.0.left" timestamp="1720156983741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2561" height="281" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1717071220407" />
+    <state width="2561" height="414" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1720156983741" />
+    <state width="2561" height="414" key="GridCell.Tab.0.right" timestamp="1720156983741">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="414" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1720156983741" />
+    <state width="2561" height="485" key="GridCell.Tab.1.bottom" timestamp="1719900002881">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="485" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1719900002881" />
+    <state width="2561" height="485" key="GridCell.Tab.1.center" timestamp="1719900002881">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="485" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1719900002881" />
+    <state width="2561" height="485" key="GridCell.Tab.1.left" timestamp="1719900002881">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="485" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1719900002881" />
+    <state width="2561" height="485" key="GridCell.Tab.1.right" timestamp="1719900002881">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="485" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1719900002881" />
+    <state x="772" y="366" key="Vcs.Push.Dialog.v2" timestamp="1719814989629">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="772" y="366" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1719814989629" />
+    <state x="733" y="362" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1719900001334">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="733" y="362" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1400@0.0.2560.1400" timestamp="1719900001334" />
   </component>
 </project>

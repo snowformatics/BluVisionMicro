@@ -57,7 +57,7 @@ cnn_model = load_model('09112020_1.h5')
 
 # Image analysis mode
 
-for experiment in experiments:
+for experiment in experiments[1:2]:
     # Experiments can have sev.eral pathogen inoculation time points
     # We loop over each inoculation time point inside the experiment
     hais = os.listdir(os.path.join(source_path, experiment))
@@ -99,7 +99,7 @@ for experiment in experiments:
                 # Mulit
                 #print(len(image_sub_lst))
                 for sub_lst in image_sub_lst:
-                    #print (sub_lst)
+                    print (sub_lst)
                     Parallel(n_jobs=3)(delayed(segmenter_class().start_pipeline)(i) for i in sub_lst)
                 args = [images, source_path, destination_path, experiment, hai, exchange_path]
                 #bluvisionmicro.results_pipeline.ResultsPipeline().start_pipeline(args)

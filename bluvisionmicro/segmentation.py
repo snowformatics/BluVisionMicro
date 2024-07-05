@@ -78,6 +78,8 @@ def filter_contours(all_rois, image, max_hyphae_height, max_hyphae_width, max_le
                         if extent_value <= extent and area > 3500:
                             contours_filtered.append((y, y + height, x, x + width, area))
                             #cv2.drawContours(image, [cnt], 0, (0, 255, 0), 2)
+                            #vis_image = image[y:y + width, x:x + height]
+                            #cv2.drawContours(vis_image, [cnt], -1, (0, 255, 0), 2)
                     else:
                         contours_filtered.append((y, y + height, x, x + width, area))
 
