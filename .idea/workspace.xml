@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ef56e8-1b34-4666-95be-0747da98e508" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bluvisionmicro/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/bluvisionmicro/cli.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -498,7 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1720157111281</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add automatic hyphae size">
+      <created>1720524110647</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1720524110647</updated>
+    </task>
+    <task id="LOCAL-00038" summary="add automatic hyphae size">
+      <created>1720524162542</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1720524162542</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -520,30 +534,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="add automatic hyphae size" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="663" y="188" width="999" height="656" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1720164611441">
+    <state x="663" y="188" width="999" height="656" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1720524351410">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="663" y="188" width="1664" height="982" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1720164611441" />
-    <state x="800" y="184" key="CommitChangelistDialog2" timestamp="1720157109937">
+    <state x="663" y="188" width="1664" height="982" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1720524351410" />
+    <state x="1222" y="311" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1720524348522">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="800" y="184" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1720157109937" />
-    <state width="1279" height="414" key="GridCell.Tab.0.bottom" timestamp="1720417641188">
+    <state x="1222" y="311" key="#com.intellij.ide.macro.MacrosDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1720524348522" />
+    <state x="800" y="184" key="CommitChangelistDialog2" timestamp="1720524161835">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1279" height="414" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1720417641188" />
-    <state width="1279" height="414" key="GridCell.Tab.0.center" timestamp="1720417641188">
+    <state x="800" y="184" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1720524161835" />
+    <state width="1279" height="414" key="GridCell.Tab.0.bottom" timestamp="1720524381611">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1279" height="414" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1720417641188" />
-    <state width="1279" height="414" key="GridCell.Tab.0.left" timestamp="1720417641188">
+    <state width="1279" height="414" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1720524381611" />
+    <state width="1279" height="414" key="GridCell.Tab.0.center" timestamp="1720524381611">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1279" height="414" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1720417641188" />
-    <state width="1279" height="414" key="GridCell.Tab.0.right" timestamp="1720417641188">
+    <state width="1279" height="414" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1720524381611" />
+    <state width="1279" height="414" key="GridCell.Tab.0.left" timestamp="1720524381610">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1279" height="414" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1720417641188" />
+    <state width="1279" height="414" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1720524381610" />
+    <state width="1279" height="414" key="GridCell.Tab.0.right" timestamp="1720524381611">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1279" height="414" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1720524381611" />
     <state width="2561" height="485" key="GridCell.Tab.1.bottom" timestamp="1719900002881">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -560,10 +578,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2561" height="485" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1719900002881" />
-    <state x="772" y="366" key="Vcs.Push.Dialog.v2" timestamp="1720157113195">
+    <state x="772" y="366" key="Vcs.Push.Dialog.v2" timestamp="1720524172020">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="772" y="366" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1720157113195" />
+    <state x="772" y="366" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1720524172020" />
     <state x="733" y="362" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1719900001334">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -39,6 +39,11 @@ conda activate bluvisionmicro_env
 
 `pip install requiremenmts.txt` 
 
+> [!IMPORTANT]
+> Download and copy the CNN model:
+>
+`https://github.com/snowformatics/BluVisionMicro/releases/download/v1.0.0/09112020_1.h5`
+
 
 ## Run the analysis
 > [!IMPORTANT]
