@@ -55,6 +55,13 @@ For large colonies (> 50 hai) type the command:<br>
 `python cli.py -s source_path -d destination_path -p mildew -m results`
 
 ## Parameters
+| Parameter | Description |
+| --------- | ----------- |
+| -s        | Path to source CZI images. |
+| -d        | Path to store the ROIs. |
+| -p        | Pathogen. |
+| -m        | Mode, analysis or results. |
+| -se       | Sensitivity for the CNN to predict hyphae. We recommend using strict values for host interactions (se = 0.0) and relaxed values for nonhost interactions (0.05). |
 
 -s -> path to source CZI images<br>
 -d -> path to store the results<br>
