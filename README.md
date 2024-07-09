@@ -17,40 +17,42 @@ Figure 3: Blumeria graminis hyphae detetcion
 
 ## Installation
 
-We recoommend to install the software via Ananconda:
 
-1.) Create new enviroment with Python 3.6
+> [!TIP]
+> We recommend to install Anaconda and  for managing dependencies, it is often recommended to create a new environment for your project:
 
-conda create -n bluvision_micro python=3.6
+Install Anaconda from https://www.anaconda.com/distribution/
 
-2.) Install dependencies:
+Open the Anaconda Prompt
+```
+conda create --name bluvisionmicro_env python=3.8
+conda activate bluvisionmicro_env
+```
 
-pip install numpy<br>
-pip install pandas<br>
-pip install czifile<br>
-pip install mahotas<br>
-pip install -U scikit-image<br>
-pip install tensorflow<br>
-pip install keras<br>
-pip install opencv-contrib-python<br>
-pip install scikit-learn<br>
-pip to install joblib<br>
+> [!IMPORTANT]
+> Clone the  Github repository:
+> 
+`git clone https://github.com/snowformatics/BluVisionMicro.git`
 
-3.) Clone Github repository
+> [!IMPORTANT]
+> Install dependencies:
 
-git clone https://github.com/snowformatics/BluVisionMicro.git
+`pip install requiremenmts.txt` 
 
-## Run Analysis
--> Inside BluVisionMicro folder<br>
-For small colonies (< 50hai):<br>
-python cli.py -s source_path -d destination_path -p mildew_small -m analysis -se 0.05
 
-For large colonies (> 50hai):<br>
-python cli.py -s source_path -d destination_path -p mildew_large -m analysis -se 0.05
+## Run the analysis
+> [!IMPORTANT]
+> Move to the BluVisionMicro folder and make sure your environment is activated<br> 
 
-## Run Results
+For small colonies (< 50 hai) type the command:<br>
+`python cli.py -s source_path -d destination_path -p mildew_small -m analysis -se 0.05`
 
-python cli.py -s source_path -d destination_path -p mildew -m results
+For large colonies (> 50 hai) type the command:<br>
+`python cli.py -s source_path -d destination_path -p mildew_large -m analysis -se 0.05`
+
+## Export the results
+
+`python cli.py -s source_path -d destination_path -p mildew -m results`
 
 ## Parameters
 
