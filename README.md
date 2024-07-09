@@ -62,11 +62,3 @@ For large colonies (> 50 hai) type the command:<br>
 | -p        | Pathogen. |
 | -m        | Mode, analysis or results. |
 | -se       | Sensitivity for the CNN to predict hyphae. We recommend using strict values for host interactions (se = 0.0) and relaxed values for nonhost interactions (0.05). |
-
--s -> path to source CZI images<br>
--d -> path to store the results<br>
--p -> pathogen, currently only mildew available <br>
--m -> mode (analysis or results)<br>
--se -> Sensitivity for the CNN to predict hyphae. We recommend using strict values for host interactions (se = 0.0) and relaxed values for nonhost interactions (0.05). <br>
-
-
